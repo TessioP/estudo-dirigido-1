@@ -1,0 +1,141 @@
+\section{Expansion of Maxwell's Curl Equations in Cartesian Coordinates}
+
+The Maxwell's equations are:
+
+\begin{eqnarray}
+    \rot \Et(t) = & -\partial _t \Bt(t), \\
+    \rot \Hht(t) = & \partial_t \Dt(t), \\
+    \Div \Bt(t) = & 0, \\
+    \Div \Dt(t) = & 0,
+\end{eqnarray}
+where $\partial_t\cdot = \partialDerivative{\cdot}{t}$.
+
+The the constitutive relations are:
+\begin{eqnarray}
+    \Bt(t) = & \brackets{\mu_0\mu_r  (t)} \ast \Hht(t), \\
+    \Dt(t) = & \brackets{\epsilon_0 \epsilon_r  (t)} \ast \Et(t),
+\end{eqnarray}
+where $\brackets{\cdot}$ represents a tensor.
+
+\subsection{Normalizing the Electric Fields}
+It will be adopted the conventional approach in FDTD and the electric field will be normalized as:
+\begin{equation}
+    \tilde{\Et}(t) = \sqrt{\cfrac{\epsilon_0}{\mu_0}}\Et(t) = \cfrac{1}{\eta_0}\Et(t).
+\end{equation}
+Also, from now on, the time depency $(t)$ will be ommited for cleaning notation reasons.
+
+The other parameters related to the electric field must also be normalized:
+\begin{equation}
+    \tilde{\Dt} = \sqrt{\cfrac{1}{\epsilon_0\mu_0}} \Dt = c_0 \Dt.
+\end{equation}
+
+Therefore, the normalized Maxwell's equations become:
+
+\begin{eqnarray}
+    \rot \En = & -\partial _t \Bt, \\
+    \rot \Hht = & \partial_t \Dn, \\
+    \Div \Bt = & 0, \\
+    \Div \Dn = & 0.
+\end{eqnarray}
+
+
+\subsection{Expanding Maxwell's Equations}
+
+To expand the equations, it will be assumed that $\brackets{\mu_r}$ and $\brackets{\epsilon_r}$ has only diagonal terms. 
+
+The equation $\rot \En = - \cfrac{\brackets{\mu_r}}{c_0} \partial _t \Bt$ becomes:
+
+\begin{eqnarray}
+    \partial_z\En_y - \partial_y\En_z =& \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
+    \partial_x\En_z - \partial_z\En_x =& \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
+    \partial_y\En_x - \partial_x\En_y =& \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
+\end{eqnarray}
+
+The equation $\rot \Hht = \cfrac{1}{c_0} \partial _t \Dn$ becomes:
+
+\begin{eqnarray}
+    \partial_z\Hht_y - \partial_y\Hht_z =& \cfrac{1}{c_0} \partial_t \Dn_x, \\
+    \partial_x\Hht_z - \partial_z\Hht_x =& \cfrac{1}{c_0} \partial_t \Dn_y, \\
+    \partial_y\Hht_x - \partial_x\Hht_y =& \cfrac{1}{c_0} \partial_t \Dn_z.
+\end{eqnarray}
+
+Finally, the equation $ \Dn = \brackets{\epsilon_r} \En $ becomes:
+
+\begin{eqnarray}
+    \Dn_x =& \epsilon_{xx} \En_x, \\
+    \Dn_y =& \epsilon_{yy} \En_y, \\
+    \Dn_z =& \epsilon_{zz} \En_z.
+\end{eqnarray}
+
+\subsection{Notation for Curl Terms}
+
+\begin{eqnarray}
+    \CEx =& \partial_z\En_y - \partial_y\En_z, \\
+    \CEy =& \partial_x\En_z - \partial_z\En_x, \\
+    \CEz =& \partial_y\En_x - \partial_x\En_y.
+\end{eqnarray}
+
+\begin{eqnarray}
+    \CHx =& \partial_z\Hht_y - \partial_y\Hht_z, \\
+    \CHy =& \partial_x\Hht_z - \partial_z\Hht_x, \\
+    \CHz =& \partial_y\Hht_x - \partial_x\Hht_y.
+\end{eqnarray}
+
+\subsection{Final Equations Form}
+
+\begin{eqnarray}
+    \CEx =& \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
+    \CEy =& \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
+    \CEz =& \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
+\end{eqnarray}
+
+\begin{eqnarray}
+    \CHx =& \cfrac{1}{c_0} \partial_t \Dn_x, \\
+    \CHy =& \cfrac{1}{c_0} \partial_t \Dn_y, \\
+    \CHz =& \cfrac{1}{c_0} \partial_t \Dn_z.
+\end{eqnarray}
+
+\begin{eqnarray}
+    \Dn_x =& \epsilon_{xx} \En_x, \\
+    \Dn_y =& \epsilon_{yy} \En_y, \\
+    \Dn_z =& \epsilon_{zz} \En_z.
+\end{eqnarray}
+
+
+\section{Finite-Difference Approximation to Maxwell's Equations}
+
+\subsection{Yee Grid}
+A unit cell is constructed by dividing the 3 axis into discrete cells of size $(\dx, \dy, \dz)$. Inside this cell, it is necessary to put all the fields of the electromagnetic problem $(\Et_x, \Et_y, \Et_z, \Hht_x, \Hht_x, \Hht_z)$. Instead of putting all fields on the origin $(0, 0, 0)$, where is more intuitive, Yee proposed the following approach:
+
+\begin{itemize}
+    \item $\Et_x$ on $(\dx/2, 0, 0)$,
+    \item $\Et_y$ on $(0, \dy/2, 0)$,
+    \item $\Et_z$ on $(0, 0, \dz/2)$,
+    \item $\Hht_x$ on $(0, \dy/2, \dz/2)$,
+    \item $\Hht_y$ on $(\dx/2, 0, \dz/2)$,
+    \item $\Hht_z$ on $(\dx/2, \dy/2, 0)$.
+\end{itemize}
+
+\input{contents/tiks/yee_grid.tex}
+
+There are some reasons for using this scheme:
+\begin{itemize}
+    \item The divergences are naturally zero.
+    \item The physical boundary conditions are naturally satisfied.
+    \item It is an elegant arrangement to approximate Maxwell's curl equations.
+\end{itemize}
+
+Additionaly, there are some consequences for using this scheme:
+\begin{itemize}
+    \item Field components are in physically different locations.
+    \item Field components may be in different materials even if they are in the same unit cell.
+    \item Field components will be out of phase.
+\end{itemize}
+
+\subsection{Finite-Difference Equations on Yee Grid}
+
+Each cell on the grid is identified by the coordines $(i\dx, j\dy, k\dz)$, where $(i, j, k)$ are the index of the cell.
+
+Note that on each face of the Yee cell there is the fields of the adjacent cell. Consider, first, the equation for $\Hht_x$:
+
+\input{contents/tiks/yee_grid_chx.tex}

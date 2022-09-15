@@ -1,0 +1,552 @@
+\section{Tensors}
+
+\subsection{Definitions}
+On this work, it will be adopted the convention $(+ - - -)$ for the Minkowski spacetime.
+
+The metric tensor is:
+\begin{definition}{Metric Tensor}
+  \begin{align}
+    g^{\mu\nu} = g_{\mu\nu} =
+      \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & -1 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & -1
+      \end{bmatrix}
+  \end{align}
+\end{definition}
+
+\begin{definition}{Four-current}
+  \begin{align}
+    J^\mu &= (c\rho, \J) \\
+    J_\mu &= (c\rho, -\J)
+  \end{align}
+\end{definition}
+
+\begin{definition}{Four-potential}
+  \begin{align}
+    A^\mu &= \pare{\cfrac{1}{c}\phi, \Aa} \\
+    A_\mu &= \pare{\cfrac{1}{c}\phi, -\Aa},
+  \end{align}
+  where $\phi$ is the scalar potential and $\Aa$ is the vector potential.
+\end{definition}
+
+\begin{definition}{$\partial$ operator}
+  \begin{align}
+    \partial_\mu &= \pare{\cfrac{1}{c}\PartialDerivative{}{t}, \Nabla}\\
+    \partial^\mu &= \pare{\cfrac{1}{c}\PartialDerivative{}{t}, -\Nabla}
+  \end{align}
+\end{definition}
+
+\begin{definition}{$\partial^2$ operator}
+  \begin{align}
+    \partial^2 = \partial_\mu \partial^\mu = \cfrac{1}{c^2}\cfrac{\partial^2}{\partial t^2} - \Nabla^2
+  \end{align}
+\end{definition}
+
+\begin{definition}{Four-velocity}
+  \begin{align}
+    v^\mu &= \gamma\pare{c, \bm{v}} \\
+    v_\mu &= \gamma\pare{c, -\bm{v}}
+  \end{align}
+  where $\phi$ is the scalar potential and $\Aa$ is the vector potential.
+\end{definition}
+
+\subsection{Fields}
+  \label{sub:fields}
+  Let $\Ff$ be the field tensor defined as:
+  \begin{definition}{Eletromagnetic Tensor}
+    \begin{align}
+      \Ff = \partial^\mu A^\nu - \partial^\nu A^\mu
+    \end{align}
+  \end{definition}
+
+  So, from $\Div \B = 0$,
+  \begin{align}
+    \B = \rot \Aa.
+  \end{align}
+
+  And, from $\rot \E = -\PartialDerivative{\B}{t}$,
+  \begin{align}
+    \E = -\PartialDerivative{\Aa}{t} - \Nabla \phi
+  \end{align}
+
+  Note that $\Ff$ is anti-symmetric, i.e., $\Ff = -F^{\nu\mu}$. Hence $F^{\mu\mu} = 0$. It is only necessary to calculate 6 terms.
+
+  Starting with $F^{0\nu}$, $\nu \in [1,2,3]$:
+  \begin{align}
+    F^{0\nu} &= \partial^0 A^\nu - \partial^\nu A^0 \\
+    F^{0\nu} &= \partial_0 A^\nu + \partial_\nu A^0 \\
+    F^{0\nu} &= \cfrac{1}{c}\PartialDerivative{A^\nu}{t} + \cfrac{1}{c}\PartialDerivative{\phi}{X^\nu}\\
+    F^{0\nu} &= -\cfrac{1}{c}E^\nu
+  \end{align}
+
+  Now for $F^{12}$:
+  \begin{align}
+    F^{12} &= \partial^1 A^2 - \partial^2 A^1 \\
+    F^{12} &= -\partial_1 A^2 + \partial_2 A^1 \\
+    F^{12} &= \partial_2 A^1 -\partial_1 A^2 \\
+    F^{12} &= \epsilon_{321}\pare{\rot A}_3 \\
+    F^{12} &= -B^3
+  \end{align}
+
+  Similarly, $F^{23} = -B^1$ and $F^{13} = B^2$.
+
+  Therefore, $\Ff$ can be written as:
+  \begin{align}
+    \Ff =
+    \begin{bmatrix}
+      0 & -\cfrac{1}{c}E^x & -\cfrac{1}{c}E^y & -\cfrac{1}{c}E^z \\
+      \cfrac{1}{c}E^x & 0 & -B^z & B^y \\
+      \cfrac{1}{c}E^y & B^z & 0 & -B^x \\
+      \cfrac{1}{c}E^z & -B^y & B^x & 0
+    \end{bmatrix}
+  \end{align}
+
+  So, the covariant electromagnetic tensor becomes:
+  \begin{align}
+    F_{\mu\nu} = g_{\alpha\nu}F^{\alpha\beta}g_{\nu\beta}
+  \end{align}
+  \begin{align}
+    F_{\mu\nu} =
+        \begin{bmatrix}
+          0 & \cfrac{1}{c}E^x & \cfrac{1}{c}E^y & \cfrac{1}{c}E^z \\
+          -\cfrac{1}{c}E^x & 0 & -B^z & B^y \\
+          -\cfrac{1}{c}E^y & B^z & 0 & -B^x \\
+          -\cfrac{1}{c}E^z & -B^y & B^x & 0
+        \end{bmatrix}
+  \end{align}
+
+  And, finally, the covariant-contravariant electromagnetic tensor becomes:
+  \begin{align}
+    F^\mu_\nu = F^{\mu \alpha} g_{\alpha\nu}
+  \end{align}
+  \begin{align}
+    F^\mu_\nu =
+        \begin{bmatrix}
+          0 & \cfrac{1}{c}E^x & \cfrac{1}{c}E^y & \cfrac{1}{c}E^z \\
+          \cfrac{1}{c}E^x & 0 & B^z & -B^y \\
+          \cfrac{1}{c}E^y & -B^z & 0 & B^x \\
+          \cfrac{1}{c}E^z & B^y & -B^x & 0
+        \end{bmatrix}
+  \end{align}
+
+\subsection{EM equations}
+
+  \begin{align}
+    \label{eq:div_e}
+    \Div \E &= \cfrac{\rho}{\epsilon} \\
+    \label{eq:div_b}
+    \Div \B &= 0 \\
+    \label{eq:rot_e}
+    \rot \E &= -\PartialDerivative{\B}{t} \\
+    \label{eq:rot_b}
+    \rot \B &= \mu_0 \J + \cfrac{1}{c^2}\PartialDerivative{E}{t}
+  \end{align}
+
+
+  Starting with \autoref{eq:div_e}:
+  \begin{align}
+    \Div \E &= \cfrac{\rho}{\epsilon} \\
+    \partial_\mu E^\mu &= \cfrac{\rho}{\epsilon} \\
+    0 + \partial_\mu E^\mu &= c^2\mu_0\rho \\
+    0 + \cfrac{\partial_\mu E^\mu}{c} &= \mu_0J^0 \\
+    \partial_\mu F^{\mu0} &= \mu_0J^0
+  \end{align}
+
+  Now for \autoref{eq:rot_b}:
+  \begin{align}
+    - \cfrac{1}{c^2}\PartialDerivative{E}{t} + \rot \B &= \mu_0 \J \\
+    - \cfrac{1}{c^2}\PartialDerivative{E^i}{t} + \pare{\rot \B}^i &= \mu_0 J^i \\
+    - \cfrac{1}{c^2}\PartialDerivative{E^i}{t} + \pare{\rot \B}^i &= \mu_0 J^i \\
+    - \PartialDerivative{\pare{E^i/c}}{(ct)} + \pare{\rot \B}^i &= \mu_0 J^i \\
+    - \partial_0\pare{E^i/c} + \pare{\rot \B}^i &= \mu_0 J^i
+  \end{align}
+
+  Writing for $i = 1$:
+  \begin{align}
+    - \partial_0\pare{E^1/c} + \pare{\partial_2B^3-\partial_3B^2} &= \mu_0 J^1\\
+    \partial_0 F^{01} + \partial_2 F^{21}+\partial_3 F^{31} &= \mu_0 J^1\\
+    \partial_0 F^{01} + \partial_1 F^{11} + \partial_2 F^{21}+\partial_3 F^{31} &= \mu_0 J^1\\
+    \partial_\mu F^{\mu1} &= \mu_0J^1
+  \end{align}
+
+  Similarly,
+  \begin{align}
+    \partial_\mu F^{\mu2} &= \mu_0J^2 \\
+    \partial_\mu F^{\mu3} &= \mu_0J^3
+  \end{align}
+
+  Therefore, \autoref{eq:div_e} and \autoref{eq:rot_b} are summarized by:
+  \begin{align}
+    \label{eq:maxwell_tensor_1}
+    \partial_\mu F^{\mu\nu} &= \mu_0J^\nu
+  \end{align}
+
+  Now for \autoref{eq:div_b}:
+  \begin{align}
+    \Div \B &= 0 \\
+    \partial_1B^1 + \partial_2B^2 + \partial_3B^3 &= 0 \\
+    \partial_1F^{32} + \partial_2F^{13} + \partial_3F^{21} &= 0
+  \end{align}
+  Let $\mu = 1$, $\nu = 2$ and $\lambda=3$:
+  \begin{align}
+    \partial_\mu F^{\lambda\nu} + \partial_\nu F^{\mu\lambda} + \partial_\lambda F^{\nu\mu} &= 0 \\
+    -\partial_\mu F^{\nu\lambda} - \partial_\nu F^{\lambda\mu} - \partial_\lambda F^{\mu\nu} &= 0 \\
+    \partial^\mu F^{\nu\lambda} + \partial^\nu F^{\lambda\mu} + \partial^\lambda F^{\mu\nu} &= 0
+  \end{align}
+
+  For \autoref{eq:rot_e}:
+
+  \begin{align}
+    \PartialDerivative{\B}{t} + \rot \E &= 0 \\
+    \cfrac{1}{c}\PartialDerivative{\B}{t} + \cfrac{1}{c}\rot \E &= 0 \\
+    \partial_0\B + \rot \cfrac{1}{c}\rot \E &= 0
+  \end{align}
+
+  \begin{align}
+    \partial_0B^1 + \cfrac{1}{c}\pare{\partial_2E^3 - \partial_3E^2} &= 0\\
+    \partial_0B^1 + \partial_2\cfrac{E^3}{c} - \partial_3\cfrac{E^2}{c} &= 0\\
+    \partial_0F^{32} + \partial_2F^{30} + \partial_3F^{20} &= 0\\
+  \end{align}
+
+  Let $\mu = 0$, $\nu = 2$ and $\lambda=3$:
+  \begin{align}
+    \partial_\mu F^{\lambda\nu} + \partial_\nu F^{\lambda\mu} + \partial_\lambda F^{\nu\mu} &= 0\\
+    \partial^\mu F^{\nu\lambda} + \partial^\nu F^{\mu\lambda} + \partial^\lambda F^{\mu\nu} &= 0
+  \end{align}
+
+  Similarly, for the next components,
+  \begin{align}
+    \partial_0B^2 + \cfrac{1}{c}\pare{\partial_3E^1 - \partial_1E^3} &= 0\\
+    \partial_0B^2 + \partial_3\cfrac{E^1}{c} - \partial_1\cfrac{E^3}{c} &= 0\\
+    \partial_0F^{13} + \partial_3F^{10} + \partial_1F^{03} &= 0
+  \end{align}
+
+  Let $\mu = 0$, $\nu = 1$ and $\lambda=3$:
+  \begin{align}
+  \partial_\mu F^{\nu\lambda} + \partial_\lambda F^{\nu\mu} + \partial_\nu F^{\mu\lambda} &= 0 \\
+  \partial^\mu F^{\lambda\nu} + \partial^\lambda F^{\mu\nu} + \partial^\nu F^{\lambda\mu} &= 0
+  \end{align}
+
+  \begin{align}
+    \partial_0B^3 + \cfrac{1}{c}\pare{\partial_1E^2 - \partial_2E^1} &= 0\\
+    \partial_0B^3 + \partial_1\cfrac{E^2}{c} - \partial_2\cfrac{E^1}{c} &= 0\\
+    \partial_0F^{21} + \partial_1F^{20} + \partial_2F^{01} &= 0
+  \end{align}
+
+  Let $\mu = 0$, $\nu = 1$ and $\lambda=2$:
+  \begin{align}
+  \partial_\mu F^{\lambda\nu} + \partial_\nu F^{\lambda\mu} + \partial_\lambda F^{\mu\nu} &= 0 \\
+  \partial^\mu F^{\nu\lambda} + \partial^\nu F^{\mu\lambda} + \partial^\lambda F^{\nu\mu} &= 0
+  \end{align}
+
+  Therefore, \autoref{eq:div_b} and \autoref{eq:rot_e} are summarized by:
+  \begin{align}
+    \partial_\mu F^{\nu\lambda} + \partial_\nu F^{\lambda\mu} + \partial_\lambda F^{\mu\nu} &= 0\\
+    \partial^\mu F^{\nu\lambda} + \partial^\nu F^{\lambda\mu} + \partial^\lambda F^{\mu\nu} &= 0
+  \end{align}
+
+\subsection{Charge Conservation}
+  \begin{align}
+    \Div \J + \PartialDerivative{\rho}{t} &= 0 \\
+    \partial_i J^i + \partial_0 J^0 &=0 \\
+    \partial_\nu J^\nu &= 0
+  \end{align}
+
+\subsection{Energy in Fields $U$}
+  \label{sub:energy_tensor}
+
+  Therefore,
+  \begin{align}
+    E^2 = c^2F^{\mu0}F_\mu^0
+  \end{align}
+  and
+  \begin{align}
+    \cfrac{c^2}{4} F^{\mu\nu}F_{\mu\nu} = \pare{\cfrac{c^2B^2}{2} - \cfrac{E^2}{2}}.
+  \end{align}
+
+  Hence:
+  \begin{align}
+    \cfrac{1}{2}\epsilon\pare{E^2 + c^2B^2} = \epsilon c^2 \pare{ F^{\mu0}F_\mu^0 + \cfrac{1}{4} F^{\mu\nu}F_{\mu\nu}}
+  \end{align}
+
+\subsection{Poynting Vector}
+  \begin{align}
+    \E \times \B =
+    \begin{vmatrix}
+      x & y & z \\
+      cF^{10} & cF^{20} & cF^{30} \\
+      F^{32} & F^{13} & F^{21}
+    \end{vmatrix}
+  \end{align}
+  Looking at the components:
+  \begin{align}
+    \x: c\pare{F^{20}F^{21}-F^{30}F^{13}}\\
+    \y: c\pare{F^{30}F^{32}-F^{10}F^{21}}\\
+    \z: c\pare{F^{10}F^{13}-F^{20}F^{32}}
+  \end{align}
+  \begin{align}
+    \x: c\pare{F^{02}F^{12}+F^{03}F^{13}} = cF^{0i}F^1_i\\
+    \y: c\pare{F^{03}F^{23}+F^{01}F^{21}} = cF^{0i}F^2_i\\
+    \z: c\pare{F^{01}F^{31}+F^{02}F^{32}} = cF^{0i}F^3_i
+  \end{align}
+
+  Therefore:
+  \begin{align}
+    \bm{S}/c &= \cfrac{1}{\mu_0c}\pare{\E\times\B} \\
+    \bm{S}/c &= \cfrac{1}{\mu_0c}\pare{cF^{0i}F^\mu_i}\\
+    \bm{S}/c &= \cfrac{1}{\mu_0}\pare{F^{0i}F^\mu_i}
+  \end{align}
+
+\subsection{Invariants}
+  As shown in \autoref{sub:energy_tensor}:
+
+  \begin{align}
+    F^{\mu\nu}F_{\mu\nu} = 2\pare{B^2 - \cfrac{E^2}{c^2}}.
+  \end{align}
+
+  Let $G$ be:
+  \begin{align}
+    G^{\alpha\beta} = \cfrac{1}{2}\epsilon^{\alpha\beta\gamma\delta}F_{\gamma\delta} =
+    \begin{bmatrix}
+      0 & -B_x & -B_y & -B_z \\
+      B_x & 0 & \cfrac{E_z}{c} & -\cfrac{E_y}{c} \\
+      B_y & -\cfrac{E_z}{c} & 0 & \cfrac{E_x}{c} \\
+      B_z & \cfrac{E_y}{c} & -\cfrac{E_x}{c} & 0
+    \end{bmatrix}
+  \end{align}
+
+  So:
+  \begin{align}
+    \cfrac{1}{4}\epsilon_{\alpha\beta\gamma\delta}F^{\alpha\beta}F^{\gamma\delta} = \cfrac{1}{2}G_{\gamma\delta}F^{\gamma\delta} = \cfrac{2B^iE_i}{c} = \cfrac{2}{c}\pare{\B \cdot \E}
+  \end{align}
+
+\subsection{Action $E_p - E_k$}
+
+  \begin{align}
+    E_p - E_k = \rho\phi - \J \cdot \Aa
+  \end{align}
+
+  \begin{align}
+    A_\mu = g_{\mu\nu}A^{\nu} = \pare{\cfrac{1}{c}\phi,- \Aa}
+  \end{align}
+
+  Therefore:
+
+  \begin{align}
+    J^\mu A_{\mu} = \rho\phi - \J\cdot\Aa
+  \end{align}
+
+\subsection{Minkowski Force}
+
+  \begin{align}
+    \bm{K} = \gamma q\pare{\E + \bm{v}\times\B}
+  \end{align}
+
+  \begin{align}
+    v_\nu F^{\mu\nu} =
+    \left[\begin{smallmatrix}
+      0 & -\cfrac{1}{c}E^x & -\cfrac{1}{c}E^y & -\cfrac{1}{c}E^z \\
+      \cfrac{1}{c}E^x & 0 & -B^z & B^y \\
+      \cfrac{1}{c}E^y & B^z & 0 & -B^x \\
+      \cfrac{1}{c}E^z & -B^y & B^x & 0
+    \end{smallmatrix}\right]\gamma
+    \begin{bmatrix}
+      c \\ v_x \\ v_y \\ v_z
+    \end{bmatrix}
+  \end{align}
+
+    \begin{align}
+      v_\nu F^{\mu\nu} =
+      \gamma \brackets{\begin{matrix}
+        -\cfrac{E_xv_x}{c} -\cfrac{E_yv_y}{c} -\cfrac{E_zv_z}{c} \\
+        B_yv_z - B_zv_y + E_x \\
+        -B_xv_z + B_zv_x + E_y \\
+        B_xv_y - B_yv_x + E_z
+    \end{matrix}}
+    \end{align}
+
+    \begin{align}
+      v_\nu F^{\mu\nu} =
+      \gamma \brackets{\begin{matrix}
+        - \cfrac{\E}{c}\cdot \bm{v} \\
+        \E + \bm{v}\times \B
+    \end{matrix}}
+    \end{align}
+
+    Therefore:
+    \begin{align}
+      cK^\mu = q v_\nu F\mu\nu
+    \end{align}
+
+\subsection{Stress Energy Tensor}
+  \begin{align}
+    \sigma_{ij} &= \epsilon_0\pare{E_iE_j - \cfrac{1}{2}\delta_{ij}E^2} \nonumber \\
+    &\qquad + \cfrac{1}{\mu_0}\pare{B_iB_j - \cfrac{1}{2}\delta_{ij}B^2}
+  \end{align}
+
+  \begin{align}
+    T^{\alpha\beta} = \cfrac{1}{\mu_0} \pare{F^\alpha_\gamma F^{\gamma\beta}  + \cfrac{1}{4}g^{\alpha\beta}F_{\gamma\nu}F^{\gamma\nu}}
+  \end{align}
+
+  Or, similarly,
+
+  \begin{align}
+    T^{\alpha\beta} = \begin{bmatrix}
+      \epsilon_0E^2/2 + B^2/2\mu_0 & S_x/c & S_y/c & S_z/c \\
+      S_x/c & -\sigma_{xx} & -\sigma_{xy} & -\sigma_{xz} \\
+      S_y/c & -\sigma_{yx} & -\sigma_{yy} & -\sigma_{yz} \\
+      S_z/c & -\sigma_{zx} & -\sigma_{zy} & -\sigma_{zz} \\
+  \end{bmatrix}
+  \end{align}
+
+  \begin{align}
+    T^{\alpha\beta} = \begin{bmatrix}
+      U & S_x/c & S_y/c & S_z/c \\
+      S_x/c & -\sigma_{xx} & -\sigma_{xy} & -\sigma_{xz} \\
+      S_y/c & -\sigma_{yx} & -\sigma_{yy} & -\sigma_{yz} \\
+      S_z/c & -\sigma_{zx} & -\sigma_{zy} & -\sigma_{zz} \\
+  \end{bmatrix}
+  \end{align}
+
+\subsection{Conservation Energy Momentum $\textbf{S}/c^2$}
+
+
+  \begin{align}
+    \label{eq:du_plus_divs}
+    \PartialDerivative{U}{t} + \Div \bm{S} = - \J\cdot \E \\
+    \label{eq:dt_minus_dsdt}
+    \Nabla \cdot \overleftrightarrow{T} - \cfrac{1}{c^2}\PartialDerivative{\bm{S}}{t} = \rho\E + \J \times \B
+  \end{align}
+
+  The expression $\partial_\beta T^{\alpha\beta}$ becomes:
+  \begin{align}
+    \partial_\beta T^{\alpha\beta} = \begin{bmatrix}
+      \partial_0 U + \partial_1S_x/c + \partial_2S_y/c + \partial_3S_z/c \\
+      \partial_0 S_x/c -\partial_1\sigma_{xx} -\partial_2\sigma_{xy} -\partial_3\sigma_{xz} \\
+      \partial_0 S_y/c -\partial_1\sigma_{yx}  -\partial_2\sigma_{yy}  -\partial_3\sigma_{yz} \\
+      \partial_0 S_z/c  -\partial_1\sigma_{zx}  -\partial_2\sigma_{zy}  -\partial_3\sigma_{zz} \\
+  \end{bmatrix}
+  \end{align}
+  \begin{align}
+    \partial_\beta T^{\alpha\beta} =
+    \begin{bmatrix}
+      \cfrac{1}{c} \pare{\PartialDerivative{U}{t} + \Div \Ss} \\
+      \cfrac{1}{c^2}\PartialDerivative{\Ss}{t} - \Div \overleftrightarrow{T}
+    \end{bmatrix}
+  \end{align}
+
+  Now, consider the expression $g^{\alpha\rho}F_{\rho\gamma}J^\gamma$:
+
+  \begin{align}
+    g^{\alpha\rho}F_{\rho\gamma}J^\gamma = F^\alpha_\gamma J^\gamma
+  \end{align}
+  \begin{align}
+    F^\alpha_\gamma J^\gamma &= \left[\begin{smallmatrix}
+      0 & -E^x/c & -E^y/c & -E^z/c \\
+      -E^x/c & 0 & B^z & -B^y \\
+      -E^y/c & -B^z & 0 & B^x \\
+      -E^z/c & B^y & -B^x & 0
+    \end{smallmatrix}\right]\left[\begin{smallmatrix}
+      c\rho \\ J_x \\ J_y \\ J_z
+  \end{smallmatrix}\right]
+  \end{align}
+  \begin{align}
+    F^\alpha_\gamma J^\gamma &= \begin{bmatrix}
+      -E_xJ_x/c - E_yJ_y/c - E_zJ_z/c \\
+      -B_yJ_z + B_zJ_y -E_x\rho \\
+      B_xJ_z - B_zJ_x -E_y\rho \\
+      -B_xJ_y + B_yJ_x -E_z\rho \\
+    \end{bmatrix}
+  \end{align}
+  \begin{align}
+    F^\alpha_\gamma J^\gamma &= \begin{bmatrix}
+      -\cfrac{\E}{c}\cdot \J \\
+      - \rho\E - \J\times\B
+  \end{bmatrix}
+  \end{align}
+
+  Therefore, $\partial_\beta T^{\alpha\beta} = g^{\alpha\rho}F_{\rho\gamma}J^\gamma$ is equivalent to \autoref{eq:du_plus_divs} and \autoref{eq:dt_minus_dsdt}, as shown below:
+  \begin{align}
+    \begin{bmatrix}
+      \cfrac{1}{c} \pare{\PartialDerivative{U}{t} + \Div \Ss} \\
+      \cfrac{1}{c^2}\PartialDerivative{\Ss}{t} - \Div \overleftrightarrow{T}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      -\cfrac{\E}{c}\cdot \J \\
+      - \rho\E - \J\times\B
+  \end{bmatrix}
+  \end{align}
+  \begin{align}
+    \begin{bmatrix}
+      \PartialDerivative{U}{t} + \Div \Ss \\
+      \Div \overleftrightarrow{T} - \cfrac{1}{c^2}\PartialDerivative{\Ss}{t}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      -\E\cdot \J \\
+      \rho\E + \J\times\B
+  \end{bmatrix}
+  \end{align}
+
+\subsection{Potential Function $A$}
+
+  \begin{align}
+    \E = -\Nabla \phi - \PartialDerivative{\Aa}{t}\\
+    \B = \rot \Aa
+  \end{align}
+
+  \begin{align}
+    F_{\alpha\beta} = \partial_\beta A_\alpha - \partial_\alpha A_\beta
+  \end{align}
+
+  This was already proven at \autoref{sub:fields}.
+
+\subsection{Lorenz Gauge}
+
+  \begin{align}
+    \lambda = \Div \Aa + \cfrac{1}{c^2}\PartialDerivative{\phi}{t} = 0
+  \end{align}
+
+  \begin{align}
+    \partial_\alpha A^{\alpha} &= \partial_0 \cfrac{\phi}{c} + \Div \Aa \\
+    \partial_\alpha A^{\alpha} &= \lambda = 0
+  \end{align}
+
+
+\subsection{Maxwell's Equations}
+
+  \begin{align}
+    \square^2 \Aa = \mu_0 \J \\
+    \square^2 \phi = \cfrac{\rho}{\epsilon_0}
+  \end{align}
+
+
+  From \autoref{eq:maxwell_tensor_1}:
+  \begin{align}
+    \partial_\alpha F^{\alpha\beta} &= \mu_0J^\beta \\
+    \partial_\alpha\pare{\partial^\alpha A^\beta - \partial^\beta A^\alpha} &= \mu_0J^\beta \\
+    \partial_\alpha\partial^\alpha A^\beta - \partial_\alpha \partial^\beta A^\alpha &= \mu_0J^\beta \\
+    \partial^2 A^\beta - \partial^\beta \lambda &= \mu_0J^\beta \\
+    \partial^2 A^\beta &= \mu_0J^\beta
+  \end{align}
+
+  \begin{align}
+    \begin{bmatrix}
+      \partial^2\cfrac{\phi}{c} \\ \partial^2\Aa
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \mu_0 c \rho \\ \mu_0 \J
+    \end{bmatrix}
+  \end{align}
+
+  \begin{align}
+    \begin{bmatrix}
+      \partial^2 \phi \\ \partial^2\Aa
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \cfrac{\rho}{\epsilon_0} \\ \mu_0 \J
+    \end{bmatrix}
+  \end{align}

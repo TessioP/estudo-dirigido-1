@@ -1,0 +1,322 @@
+\ProvidesPackage{mathsutil}[2020/10/22 - lightmath-0.1.0 - Rafael R. L. Benevides]
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\RequirePackage{mathrsfs}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amstext}
+\RequirePackage{amsfonts}
+\RequirePackage{amsthm}
+\RequirePackage{bm}
+\RequirePackage{nicefrac}
+\RequirePackage{upgreek}
+
+\RequirePackage{thmtools}
+
+\RequirePackage{siunitx}
+\RequirePackage{nicefrac}
+\RequirePackage{cases}
+
+%% ==================================================
+\newcommand{\suchthat}{;\,\,}
+
+\let\emptyset\varnothing
+
+\def\equationautorefname#1#2\null{%
+  Equation#1(#2\null)%
+}
+
+%% ================================================== theorems
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\declaretheoremstyle[bodyfont=\normalfont]{normalbody}
+
+\newtheoremstyle
+  {elegant}      % name
+  {25pt}         % space above
+  {25pt}         % space below
+  {\normalfont}  % body font
+  {}             % indent amount
+  {\bfseries}    % head font
+  {.}            % punctuation after head
+  {0.5em}          % space after head
+  {}             % head spec (?)
+
+%% --------------------------------------------------
+\theoremstyle{elegant}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+% \newtheorem{exercise}{Exercise}%[chapter]
+% \newtheorem{problem}{Problem}[chapter]
+% \newtheorem{hypothesis}{Hypothesis}[section]
+
+%% --------------------------------------------------
+\theoremstyle{remark}
+\newtheorem{property}{Property}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem*{notation}{Notation}
+\newtheorem*{problem}{Problem}
+\newtheorem*{solution}{Solution}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\newcommand{\inftyint}{\int_{-\infty}^{+\infty}}
+
+\renewcommand{\v}{\bm{v}}
+\newcommand{\x}{\hat{\bm{x}}}
+\newcommand{\y}{\hat{\bm{y}}}
+\newcommand{\z}{\hat{\bm{z}}}
+\newcommand{\e}{\textnormal{e}}
+\newcommand{\posvec}{\bm{r}}
+\newcommand{\Et}{\mathcal{E}}
+\newcommand{\Bt}{\mathcal{B}}
+\newcommand{\Hht}{\mathcal{H}}
+\newcommand{\Dt}{\mathcal{D}}
+\newcommand{\En}{\tilde{\mathcal{E}}}
+\newcommand{\Dn}{\tilde{\mathcal{D}}}
+\newcommand{\Ff}{F^{\mu\nu}}
+
+\newcommand{\Aa}{\bm{A}}
+
+\newcommand{\E}{\textbf{E}}
+
+\newcommand{\D}{\textbf{D}}
+
+\newcommand{\B}{\textbf{B}}
+
+\newcommand{\Hh}{\textbf{H}}
+
+\newcommand{\J}{\textbf{J}}
+
+\newcommand{\Ss}{\textbf{S}}
+
+\newcommand{\Nabla}{\bm{\nabla}}
+
+\newcommand{\rot}{\Nabla\times}
+\newcommand{\Div}{\Nabla\cdot}
+
+\newcommand{\CEx}{C_x^E}
+\newcommand{\CEy}{C_y^E}
+\newcommand{\CEz}{C_z^E}
+
+\newcommand{\CHx}{C_x^H}
+\newcommand{\CHy}{C_y^H}
+\newcommand{\CHz}{C_z^H}
+
+\newcommand{\cqd}{\quad _\square}
+
+\DeclareMathOperator{\di}{d\!}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+
+%% ================================================== math related
+
+\newcommand\eqdef{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+\newcommand\eqae{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily a.e.}}}{=}}}
+
+
+%% -------------------------------------------------- sets
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Realnn}{\Real_{\geq 0}}
+\newcommand{\interval}[3][]{
+  \ifthenelse{ \equal{#2}{cc} }{
+    \ifx\\#1\\%
+      \left[ #3 \right]
+    \else
+       #1[ #3 #1]
+    \fi
+  }{
+    \ifthenelse{ \equal{#2}{co} }{
+      \ifx\\#1\\%
+        \left[ #3 \right)
+      \else
+         #1[ #3 #1)
+      \fi
+    }{
+      \ifthenelse{ \equal{#2}{oc} }{
+        \ifx\\#1\\%
+          \left( #3 \right]
+        \else
+           #1( #3 #1]
+        \fi
+      }{
+        \ifthenelse{ \equal{#2}{oo} }{
+          \ifx\\#1\\%
+            \left( #3 \right)
+          \else
+             #1( #3 #1)
+          \fi
+        }{
+          \PackageError{BesselSampling}{#2 not allowerd}{extra help}
+        }
+      }
+    }
+  }
+}
+
+\newcommand{\Ltwo}{\mathcal{L}^2}
+\newcommand{\LtwoEq}{L^2}
+\newcommand{\CClass}[3][0]{\mathcal{C}^{#1}\!\pare{#2; #3}}
+\newcommand{\BClass}[2]{\mathcal{B}\pare{#1; #2}}
+
+\newcommand{\restrict}[2][]{#1\vert_{#2}}
+
+%% ------------------------------- bigtimes (for generalised cartesian Products)
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathSymbol{\bigtimes}{1}{mathx}{"91}
+
+
+%% -------------------------------------------------- constants
+\newcommand{\half}{{\nicefrac{1}{2}}}
+
+%% -------------------------------------------------- delimiters
+\newcommand\pare[2][]{
+  \ifx\\#1\\%
+     \left( #2 \right)%
+  \else%
+     #1( #2 #1)%
+  \fi%
+}
+\newcommand\brackets[2][]{
+  \ifx\\#1\\%
+     \left[ #2 \right]
+  \else
+     #1[ #2 #1]
+  \fi
+}
+\newcommand\braces[2][]{
+  \ifx\\#1\\%
+     \left\lbrace #2 \right\rbrace
+  \else
+     #1\lbrace #2 #1\rbrace
+  \fi
+}
+% \newcommand\inner[2][]{
+%   \ifx\\#1\\%
+%      \left\langle #2 \right\rangle
+%   \else
+%      #1\langle #2 #1\rangle
+%   \fi
+% }
+\newcommand\inner[3][]{
+  \ifx\\#1\\%
+     \left\langle #2 \middle\vert #3 \right\rangle
+  \else
+     #1\langle #2 #1\vert #3 #1\rangle
+  \fi
+}
+
+\newcommand\commutator[3][]{
+  \ifx\\#1\\%
+     \left[ #2 \middle\vert #3 \right]
+  \else
+     #1[#2 #1\vert #3 #1]
+  \fi
+}
+
+%% -------------------------------------------------- functions
+\newcommand\floor[2][]{
+  \ifx\\#1\\%
+     \left\lfloor #2 \right\rfloor
+  \else
+     #1\lfloor #2 #1\rfloor
+  \fi
+}
+\newcommand\ceil[2][]{
+  \ifx\\#1\\%
+     \left\lceil #2 \right\rceil
+  \else
+     #1\lceil #2 #1\rceil
+  \fi
+}
+\newcommand\round[2][]{
+  \ifx\\#1\\%
+     \left\lfloor #2 \right\rceil
+  \else
+     #1\lfloor #2 #1\rceil
+  \fi
+}
+\newcommand\abs[2][]{
+  \ifx\\#1\\%
+     \left| #2 \right|
+  \else
+     #1| #2 #1|
+  \fi
+}
+\newcommand\norm[2][]{
+  \ifx\\#1\\%
+     \left\| #2 \right\|
+  \else
+     #1\| #2 #1\|
+  \fi
+}
+
+
+%% -------------------------------------------------- misc functions
+\newcommand\sinc{\mathrm{sinc}}
+\newcommand\Sinc[2][]{\sinc\pare[#1]{#2}}
+% \newcommand\E[2][]{\mathrm{E}\pare[#1]{#2}}
+\newcommand\var[2][]{\mathrm{var}\pare[#1]{#2}}
+\newcommand\cov[2][]{\mathrm{cov}\pare[#1]{#2}}
+\newcommand\trace[2][]{\mathrm{tr}\pare[#1]{#2}}
+\newcommand\probability[2][]{\mathcal{P}\pare[#1]{#2}}
+\newcommand\prob[1]{\mathcal{P}_{#1}}
+\newcommand\sign{\mathrm{sign}}
+\newcommand\combSymbol{\mathsf{\_ \! I \! \_ \! I \! \_ \! I  \!\!\!\; \_}}
+\newcommand\comb[1]{\combSymbol\pare{#1}}
+
+%% -------------------------------------------------- matrix related
+\newcommand\bmrm[1]{\bm{\mathrm{#1}}}
+\newcommand\transpose{^\mathrm{T}}
+\newcommand\hermit{^\mathrm{H}}
+\newcommand\adjoint{^\dagger}
+\newcommand\conjugate{^*}
+\newcommand\Circ{^\circ}
+\newcommand\inverse{^{-1}}
+\newcommand\eye[1]{\bmrm{I}_{#1}}
+\newcommand\zeros[1]{\bmrm{0}_{#1}}
+\newcommand\ones[1]{\bmrm{1}_{#1}}
+
+%% -------------------------------------------------- derivative
+\newcommand\partialDerivative[2]{\frac{\partial #1}{\partial #2}}
+\newcommand\PartialDerivative[2]{\dfrac{\partial #1}{\partial #2}}
+
+\newcommand\Prime{^{\prime}}
+\newcommand\PPrime{^{\prime\prime}}
+\newcommand\grad{\mathrm{grad}}
+\newcommand\pconj{^{\prime*}}
+\newcommand\ppconj{^{\prime\prime*}}
+\newcommand\conjp{^{*\prime}}
+\newcommand\conjpp{^{*\prime\prime}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\ie}{\textit{i}.\textit{e}.\ }
+\newcommand{\eg}{\textit{e}.\textit{g}.}
+
+% \newcommand\suchthat{%
+%  \@ifstar
+%   {\mathrel{}\middle|\mathrel{}}
+%   {\mid}%
+% }
+
+
+\newcommand{\dx}{\Delta x}
+\newcommand{\dy}{\Delta y}
+\newcommand{\dz}{\Delta z}
+\newcommand{\dt}{\Delta t}

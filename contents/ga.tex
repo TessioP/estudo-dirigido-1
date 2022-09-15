@@ -1,0 +1,186 @@
+\section{Geometric Algebra}
+
+\subsection{Definitions}
+
+  \begin{definition}{$\partial$ operator}
+    \begin{align}
+      \square = \cfrac{1}{c}\partial_t + \Nabla
+    \end{align}
+  \end{definition}
+
+  \begin{definition}{$\square$ operator}
+    \begin{align}
+      \square = \pare{\cfrac{1}{c}\partial_t - \Nabla}\e_0
+    \end{align}
+  \end{definition}
+
+  \begin{definition}{$\square^2$ operator}
+    \begin{align}
+      \square^2 &= \pare{\cfrac{1}{c}\partial_t - \Nabla}\e_0\pare{\cfrac{1}{c}\partial_t - \Nabla}\e_0 \\
+      \square^2 &= \pare{\cfrac{1}{c^2}\partial_t - \Nabla^2}
+    \end{align}
+  \end{definition}
+
+  \begin{definition}{Vector Current $J$}
+    \begin{align}
+      J &= c\rho - \J \\
+      J &= \pare{c\rho + \J}\e_0
+    \end{align}
+  \end{definition}
+
+  \begin{definition}{Vector Potential $A$}
+    \begin{align}
+      A &= \cfrac{\phi}{c} - \Aa \\
+      A &= \pare{\cfrac{\phi}{c} + \Aa}\e_0
+    \end{align}
+  \end{definition}
+
+  \begin{remark}{Vector Derivative}
+    \begin{align}
+      \nabla J = \nabla \cdot J + \nabla \wedge J
+    \end{align}
+  \end{remark}
+
+  \begin{remark}{Cross Product}
+    \begin{align}
+      \rot \J &= -I_3 \Nabla \wedge \J \\
+      I_3 \rot \J &= \Nabla \wedge \J
+    \end{align}
+  \end{remark}
+
+\subsection{Fields}
+
+  \begin{definition}{F}
+    \begin{align}
+      F = \E + ic\B
+    \end{align}
+    \begin{align}
+      F &= E_x\e_1 + E_y\e_2 + E_z\e_3 \nonumber \\
+      &\qquad + ic\pare{B_x\e_1 + B_y\e_2 + B_z\e_3}
+    \end{align}
+  \end{definition}
+
+\subsection{EM Equations}
+
+  \begin{align}
+    \Big( \cfrac{1}{c}\partial_t &+ \Nabla \Big) F = c\mu_0 J \\
+    \cfrac{1}{c}\partial_t \E &+ I_3 \partial_t \B + \Nabla \E + I_3 c \Nabla \B =c\mu_0 J \\
+    \cfrac{1}{c}\partial_t \E &+ I_3 \partial_t \B + (\Nabla \cdot \E + \Nabla \wedge \E) \nonumber \\
+    &+ I_3 c (\Nabla \cdot \B + \Nabla \wedge \B) =c\mu_0 J\\
+    \cfrac{1}{c}\partial_t \E &+ I_3 \partial_t \B + (\Nabla \cdot \E + I_3\rot \E) \nonumber \\
+    &+ I_3 c (\Nabla \cdot \B + I_3\rot \B) =c\mu_0 (c\rho - \J)\\
+    \cfrac{1}{c}\partial_t \E &+ I_3 \partial_t \B + \Nabla \cdot \E + I_3\rot \E \nonumber \\
+    &+ I_3 c \Nabla \cdot \B -c\rot \B =\pare{\cfrac{\rho}{\epsilon_0} - c\mu_0\J}
+  \end{align}
+
+  Separating the different blades:
+
+  \begin{align}
+    \Div \E &= \cfrac{\rho}{\epsilon_0} \\
+    \cfrac{1}{c}\partial_t\E - c\rot \B &= -c\mu_0\J \\
+    \partial_t\B + \rot \E &= 0\\
+    \Div \B &= 0
+  \end{align}
+
+\subsection{Charge Conservation}
+
+  \begin{align}
+    \Div \J + \partial_t{\rho} = 0
+  \end{align}
+
+  \begin{align}
+    \square \cdot J &= \pare{\cfrac{1}{c}\partial_t - \Nabla}\e_0\cdot\pare{c\rho + \J}\e_0 \\
+    \square \cdot J &= \pare{\cfrac{1}{c}\partial_t - \Nabla}\cdot\pare{c\rho - \J}\ \\
+    \square\cdot J&= \Div \J + \partial_t \rho
+  \end{align}
+
+\subsection{Energy in Fields $U$}
+
+  \begin{align}
+    U = \cfrac{1}{2}\epsilon\pare{\E^2 + c^2\B^2}
+  \end{align}
+
+
+  \begin{align}
+    F &= \E + I_3c\B \\
+    F^\dagger &= \E - I_3c\B
+  \end{align}
+
+  \begin{align}
+    FF^\dagger = \E^2 + c^2\B^2
+  \end{align}
+
+  Therefore:
+
+  \begin{align}
+    U = \cfrac{\epsilon}{2}FF^\dagger
+  \end{align}
+
+\subsection{Invariants}
+
+  \begin{align}
+    F^2 &= \pare{\E + I_3c\B}^2 \\
+    F^2 &= \E^2 + I_3c\E\B + I_3c\B\E -c^2\B^2 \\
+    F^2 &= \E^2 - c^2\B^2 + I_3c(\E\B + \B\E)  \\
+    F^2 &= \E^2 - c^2\B^2 + I_3 \cfrac{c}{2} (\E \cdot \B)
+  \end{align}
+
+\subsection{Action $E_p - E_k$}
+
+  \begin{align}
+    J \cdot A = \pare{c\rho - \J}\cdot \pare{\phi/c + \Aa}\\
+    \langle J \cdot A \rangle_0 = \pare{\rho\phi - \J\cdot\Aa}
+  \end{align}
+
+\subsection{Minkowski Force}
+
+  \begin{align}
+    cK &= q v F = q \gamma (c - \bm{v}) (\E + I_3c\B) \\
+    cK &= q \gamma ( c\E + I_3 c^2\B - \bm{v}\E - I_3c\bm{v}\B )\\
+    cK &= q\gamma \Big[ c\E + I_3c^2\B - \bm{v}\cdot \E - I_3\bm{v}\times\E \nonumber \\
+    &\qquad - I_3c\bm{v}\cdot \B + c\bm{v}\times \B\Big]\\
+    \bm{K} &= \gamma q \pare{ \E + \bm{v}\times \B}
+  \end{align}
+
+\subsection{Stress Energy Tensor}
+  \begin{align}
+    T_{i} = Fe_ie_0F,
+  \end{align}
+  where $i \in \brackets{1,2,3}$.
+
+  \begin{align}
+    T^{\mu\nu} = \pare{F n^\mu F}\cdot n^\nu,
+  \end{align}
+  where $n^\nu = (1 + e_1 + e_2 + e_3)e_0$.
+
+% \subsection{Conservation Energy Momentum $\textbf{S}/c^2$}
+%   \begin{align}
+%     c \pare{\cfrac{1}{c}\partial_t - \Nabla} \cdot T_0 = JF \\
+%     \pare{\partial_t - c\Nabla} \cdot F^2 = JF \\
+%     \pare{\partial_t - c\Nabla} \cdot F^2 = JF \\
+%   \end{align}
+
+\subsection{Potential Function $A$}
+
+  \begin{align}
+    \square A &= \Bigg(\cfrac{1}{c}\partial_t - \Nabla\Bigg)\pare{\cfrac{\phi}{c}-\Aa} \\
+    \square A &= \cfrac{1}{c^2}\partial_t\phi - \cfrac{1}{c}\partial_t\Aa \nonumber - \cfrac{1}{c}\Nabla\phi + \Nabla\Aa \\
+    \square A & = \cfrac{1}{c^2}\partial_t\phi - \cfrac{1}{c}\partial_t\Aa- \cfrac{1}{c}\Nabla\phi \nonumber \\
+    &\quad + \Nabla\cdot\Aa + I_3\Nabla\times\Aa \\
+    \square A &= \lambda + \cfrac{\E}{c} + I_3\B \\
+    \square A &= \cfrac{\E}{c} + I_3\B = F
+  \end{align}
+
+\subsection{Lorenz Gauge}
+  \begin{align}
+    \square\cdot A &= \pare{\cfrac{1}{c}\partial_t - \Nabla}\e_0\cdot \pare{\cfrac{\phi}{c} + \Aa}\e_0 \\
+    &= \pare{\cfrac{1}{c}\partial_t - \Nabla}\cdot \pare{\cfrac{\phi}{c} - \Aa}\\
+    &=\cfrac{1}{c^2}\partial_t\phi + \Div \Aa = \lambda = 0
+  \end{align}
+
+\subsection{Maxwell's Equations}
+  \begin{align}
+    \square F = c\mu_0 J \\
+    \square (\square A) = c\mu_0 J \\
+    \square^2 A = c\mu_0 J
+  \end{align}
