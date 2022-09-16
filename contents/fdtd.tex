@@ -107,6 +107,8 @@ Finally, the equation $ \Dn = \brackets{\epsilon_r} \En $ becomes:
 \subsection{Yee Grid}
 A unit cell is constructed by dividing the 3 axis into discrete cells of size $(\dx, \dy, \dz)$. Inside this cell, it is necessary to put all the fields of the electromagnetic problem $(\Et_x, \Et_y, \Et_z, \Hht_x, \Hht_x, \Hht_z)$. Instead of putting all fields on the origin $(0, 0, 0)$, where is more intuitive, Yee proposed the following approach:
 
+\input{contents/tiks/yee_grid.tex}
+
 \begin{itemize}
     \item $\Et_x$ on $(\dx/2, 0, 0)$,
     \item $\Et_y$ on $(0, \dy/2, 0)$,
@@ -115,8 +117,6 @@ A unit cell is constructed by dividing the 3 axis into discrete cells of size $(
     \item $\Hht_y$ on $(\dx/2, 0, \dz/2)$,
     \item $\Hht_z$ on $(\dx/2, \dy/2, 0)$.
 \end{itemize}
-
-\input{contents/tiks/yee_grid.tex}
 
 There are some reasons for using this scheme:
 \begin{itemize}
@@ -136,6 +136,121 @@ Additionaly, there are some consequences for using this scheme:
 
 Each cell on the grid is identified by the coordines $(i\dx, j\dy, k\dz)$, where $(i, j, k)$ are the index of the cell.
 
-Note that on each face of the Yee cell there is the fields of the adjacent cell. Consider, first, the equation for $\Hht_x$:
+Note that on each face of the Yee cell there is the fields of the adjacent cell.
+
+Consider, first, the grid for $\Hht_x$:
 
 \input{contents/tiks/yee_grid_chx.tex}
+
+Based on this schematic, it is possible to write:
+
+\begin{eqnarray}
+    \partialDerivative{\En_z^{i,j,k}}{y}(t) =& \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy}, \\
+    \partialDerivative{\En_y^{i,j,k}}{z}(t) =& \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dy}.
+\end{eqnarray}
+
+Note that this space derivatives exists at time instant $t$ and they exist at the same point as $\Hht_x^{i,j,k}$.
+
+We need to explicitly write the time on the Yee grid equations, since it is essencial to write all the members of equations on the same time instant.
+
+Hence, the $\CEx$ final equation is:
+
+\begin{eqnarray}
+    \CEx =& \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy} - \nonumber \\ 
+    \qquad & \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dz}
+    \label{eq:CEx}
+\end{eqnarray}
+
+Now, for the time derivative $\partial_t \Hht_x$ to exists at time $t$:
+
+\begin{equation}
+    \partial_t \Hht_x^{i,j,k}(t) = \cfrac{\Hht_x^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_x^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt}.
+\end{equation}
+
+So, the finite-difference equation for $\Hht_x$ becomes:
+
+\begin{eqnarray}
+    \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy} - \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dy} \nonumber \\ 
+    =\cfrac{\mu_{xx}^{i,j,k}}{c_0}\cfrac{\Hht_x^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_x^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt}.
+    \label{eq:fd_hx}
+\end{eqnarray}
+
+Similarly, it is possible to write the curl equations for the other components of $\En$ and for $\Hht$:
+
+\begin{eqnarray}
+    \CEy =& \cfrac{\En_x^{i, j, k+1}(t)-\En_x^{i, j, k}(t)}{\dz} - \nonumber \\ 
+    \qquad & \cfrac{\En_z^{i+1, j, k}(t)-\En_z^{i, j, k}(t)}{\dx}
+    \label{eq:CEy}
+\end{eqnarray}
+
+\begin{eqnarray}
+    \CEz =& \cfrac{\En_y^{i+1, j, k}(t)-\En_y^{i, j, k}(t)}{\dx} - \nonumber \\ 
+    \qquad & \cfrac{\En_x^{i, j+1, k}(t)-\En_x^{i, j+1, k}(t)}{\dy}
+    \label{eq:CEz}
+\end{eqnarray}
+
+\begin{eqnarray}
+    \CHx =& \cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} - \nonumber \\ 
+    \qquad & \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz}
+    \label{eq:CHx}
+\end{eqnarray}
+
+
+\begin{eqnarray}
+    \CHy =& \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} - \nonumber \\ 
+    \qquad & \cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx}
+    \label{eq:CHy}
+\end{eqnarray}
+
+
+\begin{eqnarray}
+    \CHz =& \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} - \nonumber \\ 
+    \qquad & \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy}
+    \label{eq:CHz}
+\end{eqnarray}
+
+Finally, the finite-difference equations are, for $\Hht_y$:
+
+\begin{eqnarray}
+    \cfrac{\En_x^{i, j, k+1}(t)-\En_x^{i, j, k}(t)}{\dz} - \cfrac{\En_z^{i+1, j, k}(t)-\En_z^{i, j, k}(t)}{\dx} \nonumber \\ 
+    =\cfrac{\mu_{yy}^{i,j,k}}{c_0}\cfrac{\Hht_y^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_y^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt},
+    \label{eq:fd_hy}
+\end{eqnarray}
+
+for $\Hht_z$:
+
+\begin{eqnarray}
+    \cfrac{\En_y^{i+1, j, k}(t)-\En_y^{i, j, k}(t)}{\dx} - \cfrac{\En_x^{i, j+1, k}(t)-\En_x^{i, j+1, k}(t)}{\dy} \nonumber \\
+    =\cfrac{\mu_{zz}^{i,j,k}}{c_0}\cfrac{\Hht_z^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_z^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt},
+    \label{eq:fd_hz}
+\end{eqnarray}
+
+for $\En_x$:
+
+\begin{eqnarray}
+    &\cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} - \nonumber\\ 
+    & \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} = \nonumber\\
+    &\cfrac{\epsilon_{xx}^{i,j,k}}{c_0}\cfrac{\En_x^{i,j,k}(t+\nicefrac{\dt}{2})-\En_x^{i,j,k}(t)}{\dt},
+    \label{eq:fd_ex}
+\end{eqnarray}
+
+for $\En_y$:
+
+\begin{eqnarray}
+    &\cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} - \nonumber \\
+    &\cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} = \nonumber\\
+    &\cfrac{\epsilon_{yy}^{i,j,k}}{c_0}\cfrac{\En_y^{i,j,k}(t+\nicefrac{\dt}{2})-\En_y^{i,j,k}(t)}{\dt},
+    \label{eq:fd_ey}
+\end{eqnarray}
+
+and for $\En_z$:
+
+\begin{eqnarray}
+    &\cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} - \nonumber \\ 
+    & \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} = \nonumber\\
+    &\cfrac{\epsilon_{zz}^{i,j,k}}{c_0}\cfrac{\En_z^{i,j,k}(t+\nicefrac{\dt}{2})-\En_z^{i,j,k}(t)}{\dt}.
+    \label{eq:fd_ez}
+\end{eqnarray}
+
+
+To ease the implementation, the vector $\En$ will exists at integer step times $(0, \dt, 2\dt, \dots)$ meanwhile the vector $\Hht$ will exists at half time steps $(\nicefrac{\dt}{2}, 3\nicefrac{\dt}{2}, 5\nicefrac{\dt}{2}, \dots)$.
