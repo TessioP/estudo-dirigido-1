@@ -399,20 +399,70 @@ Starting from \eqref{eq:Hx_upml_freq}:
 In the time-domain becomes:
 
 \begin{eqnarray}
-    \partial_t\Hht_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x + \int_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\
-    = -\cfrac{c_0}{\mu_{xx}}\CEx - \int_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau
+    \partial_t\Hht_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x + \int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{xx}}\CEx - \int\limits_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau
+    \label{eq:Hx_upml_time}
 \end{eqnarray}
 
 Similarly, for the other components:
 
 \begin{eqnarray}
-    \partial_t\Hht_y + \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_y + \int_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_y(\tau)d\tau \nonumber \\
-    = -\cfrac{c_0}{\mu_{yy}}\CEy - \int_{\infty}^t\cfrac{c_0\sigma_y\Prime}{\epsilon_0\mu_{yy}}\CEy(\tau)d\tau
+    \partial_t\Hht_y + \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_y + \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_y(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{yy}}\CEy - \int\limits_{\infty}^t\cfrac{c_0\sigma_y\Prime}{\epsilon_0\mu_{yy}}\CEy(\tau)d\tau
+    \label{eq:Hy_upml_time}
 \end{eqnarray}
 
 \begin{eqnarray}
-    \partial_t\Hht_z + \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Hht_z + \int_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_y\Prime}{\epsilon_0^2}\Hht_z(\tau)d\tau \nonumber \\
-    = -\cfrac{c_0}{\mu_{zz}}\CEz - \int_{\infty}^t\cfrac{c_0\sigma_z\Prime}{\epsilon_0\mu_{zz}}\CEz(\tau)d\tau
+    \partial_t\Hht_z + \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Hht_z + \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_y\Prime}{\epsilon_0^2}\Hht_z(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{zz}}\CEz - \int\limits_{\infty}^t\cfrac{c_0\sigma_z\Prime}{\epsilon_0\mu_{zz}}\CEz(\tau)d\tau
+    \label{eq:Hz_upml_time}
+\end{eqnarray}
+
+\subsection{Numerical Approximations}
+
+Remark: for numerical implementation, Yee Grid will be used.
+
+Starting from \eqref{eq:Hx_upml_time}, each term of equation will be approximated as shown.
+
+For the term 1, the time approximation will be the same as used before:
+
+\begin{eqnarray}
+    \partial_t\Hht_x(t) \approx \cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}-\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{\dt}
+\end{eqnarray}
+
+For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by averaging the values at $t + \nicefrac{\dt}{2}$ and $t - \nicefrac{\dt}{2}$:
+
+\begin{eqnarray}
+    \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x(t)\approx
+    \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}+\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{2}
+\end{eqnarray}
+
+For the term 3, it is necessary to approximate the integral with a summation:
+
+\begin{eqnarray}
+    \int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \approx \cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2} \sum_{T=\nicefrac{\dt}{2}}^{t + \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T}\dt
+\end{eqnarray}
+
+However, in this way the summation is going future on time. The fix is simple: just pull out the last term from summation and do the integration over half a time step:
+
+\begin{eqnarray}
+    &\int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\ \nonumber
+    &\approx \cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2} \left( \Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k} \cfrac{\dt}{2} + \sum\limits_{T=\nicefrac{\dt}{2}}^{t - \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T}\dt \right) \\ \nonumber
+    &\approx\cfrac{\sigma_y\Prime\sigma_z\Prime\dt}{\epsilon_0^2} \left( \cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}-\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{4} \right. \\ & \left. + \sum\limits_{T=\nicefrac{\dt}{2}}^{t - \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T} \right)
+\end{eqnarray}
+
+For the term 4, the curl approximation for will be the same as in \eqref{eq:CEx}:
+
+\begin{eqnarray}
+    -\cfrac{c_0}{\mu_{xx}}\CEx \approx -\cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}}\CEx\Big|^{i,j,k}_{t}
+\end{eqnarray}
+
+For the term 5, as for the term 3, the integral will be approximated with a summation:
+
+\begin{eqnarray}
+    - \int\limits_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau = - \cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}} \int\limits_{\infty}^t\CEx(\tau)d\tau \nonumber \\
+    \approx - \cfrac{c_0\sigma_x^H\Big|^{i,j,k}}{\epsilon_0\mu_{xx}\Big|^{i,j,k}} \sum\limits_{T=0}^{t}\CEx\Big|^{i,j,k}_{T}\dt \nonumber \\
+    \approx - \cfrac{c_0\dt\sigma_x^H\Big|^{i,j,k}}{\epsilon_0\mu_{xx}\Big|^{i,j,k}} \sum\limits_{T=0}^{t}\CEx\Big|^{i,j,k}_{T}
 \end{eqnarray}
 
 \subsection{The PML Parameters}
