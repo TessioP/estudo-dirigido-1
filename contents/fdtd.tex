@@ -41,7 +41,7 @@ Therefore, the normalized Maxwell's equations become:
 
 \subsection{Expanding Maxwell's Equations}
 
-To expand the equations, it will be assumed that $\brackets{\mu_r}$ and $\brackets{\epsilon_r}$ has only diagonal terms. 
+To expand the equations, it will be assumed that $\brackets{\mu_r}$ and $\brackets{\epsilon_r}$ has only diagonal terms \cite{rumpf_book}. 
 
 The equation $\rot \En = - \cfrac{\brackets{\mu_r}}{c_0} \partial _t \Bt$ becomes:
 
@@ -62,9 +62,9 @@ The equation $\rot \Hht = \cfrac{1}{c_0} \partial _t \Dn$ becomes:
 Finally, the equation $ \Dn = \brackets{\epsilon_r} \En $ becomes:
 
 \begin{eqnarray}
-    \Dn_x =& \epsilon_{xx} \En_x, \\
-    \Dn_y =& \epsilon_{yy} \En_y, \\
-    \Dn_z =& \epsilon_{zz} \En_z.
+    \Dn_x =& \epsilon_{xx} \En_x, \label{eq:Dn_x}\\
+    \Dn_y =& \epsilon_{yy} \En_y, \label{eq:Dn_y}\\
+    \Dn_z =& \epsilon_{zz} \En_z. \label{eq:Dn_z}
 \end{eqnarray}
 
 \subsection{Notation for Curl Terms}
@@ -142,7 +142,7 @@ Consider, first, the grid for $\Hht_x$:
 
 \input{contents/tiks/yee_grid_chx.tex}
 
-Based on this schematic, it is possible to write:
+Based on this schematic, it is possible to write \cite{rumpf_book}:
 
 \begin{eqnarray}
     \partialDerivative{\En_z^{i,j,k}}{y}(t) =& \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy}, \\
@@ -254,3 +254,168 @@ and for $\En_z$:
 
 
 To ease the implementation, the vector $\En$ will exists at integer step times $(0, \dt, 2\dt, \dots)$ meanwhile the vector $\Hht$ will exists at half time steps $(\nicefrac{\dt}{2}, 3\nicefrac{\dt}{2}, 5\nicefrac{\dt}{2}, \dots)$.
+
+\section{The Perfect Matching Layer}
+
+The tensors for the permittivity and permeability will be \cite{rumpf_book}:
+
+\begin{equation}
+    \brackets{\epsilon_{r,x}} = \brackets{\mu_{r,x}} = \begin{bmatrix}
+        \cfrac{1}{s_x} & 0 & 0 \\
+        0 & s_x & 0 \\
+        0 & 0 & s_x
+    \end{bmatrix},
+\end{equation}
+for a wave travelling at $x$ direction,
+
+\begin{equation}
+    \brackets{\epsilon_{r,y}} = \brackets{\mu_{r,y}} = \begin{bmatrix}
+        s_y & 0 & 0 \\
+        0 & \cfrac{1}{s_y} & 0 \\
+        0 & 0 & s_y
+    \end{bmatrix},
+\end{equation}
+for a wave travelling at $y$ direction, and
+
+\begin{equation}
+    \brackets{\epsilon_{r,z}} = \brackets{\mu_{r,z}} = \begin{bmatrix}
+        s_z & 0 & 0 \\
+        0 & s_z & 0 \\
+        0 & 0 & \cfrac{1}{s_z}
+    \end{bmatrix},
+\end{equation}
+for a wave travelling at $z$ direction.
+
+And, for absorb all waves in all boundaries,
+
+\begin{equation}
+    \brackets{\epsilon_{r,\textnormal{UPML}}} = \brackets{\mu_{r,\textnormal{UPML}}} = \brackets{S} = \brackets{\epsilon_{r,x}}\brackets{\epsilon_{r,y}}\brackets{\epsilon_{r,z}} \nonumber
+\end{equation} 
+\begin{equation}
+    \brackets{S} = \begin{bmatrix}
+        \cfrac{s_ys_z}{s_x} & 0 & 0 \\
+        0 & \cfrac{s_xs_z}{s_y} & 0 \\
+        0 & 0 & \cfrac{s_xs_y}{s_z}
+    \end{bmatrix}.
+\end{equation}
+
+The loss is incorporated into the permittivity through the electrical conductivity $\sigma$ as $\tilde{\epsilon} = \epsilon_r + \cfrac{\sigma}{j\omega \epsilon_0}$.
+
+\subsection{Incorporating PML into Maxwell's Equations}
+
+The Maxwell's Equations in the frequency domain are:
+
+\begin{eqnarray}
+    \rot \E (\omega) =& -j\omega \mu_0 \brackets{\mu_r} \Hh (\omega) \\
+    \rot \Hh (\omega) =& \sigma \E(\omega) + j\omega\brackets{S} \D (\omega) \\
+    \D (\omega) =& \epsilon_0 \brackets{\epsilon _r}\E (\omega)
+\end{eqnarray}
+
+The PML $\brackets{S}$ can be incorporated as:
+
+\begin{eqnarray}
+    \rot \E (\omega) =& -j\omega \mu_0 \brackets{\mu_r} \brackets{S} \Hh (\omega) \\
+    \rot \Hh (\omega) =& \sigma \E(\omega) + j\omega \D (\omega) \\
+    \D (\omega) =& \epsilon_0 \brackets{\epsilon _r} \E (\omega)
+\end{eqnarray}
+
+Normalizing the electric field:
+
+\begin{equation}
+    \tilde{\E}(\omega) = \sqrt{\cfrac{\epsilon_0}{\mu_0}}\E(\omega) = \cfrac{1}{\eta_0}\E(\omega)
+\end{equation}
+
+\begin{equation}
+    \tilde{\D}(\omega) = \sqrt{\cfrac{1}{\epsilon_0\mu_0}} \D(\omega) = c_0 \D(\omega)
+\end{equation}
+
+Hence, the equations become:
+
+\begin{eqnarray}
+    \rot \Enw (\omega) =& -j\omega\cfrac{\brackets{\mu_r}}{c_0} \brackets{S} \Hh (\omega) \\
+    \rot \Hh (\omega) =& \eta_0 \sigma \Enw(\omega) + \cfrac{j\omega}{c_0}\brackets{S} \Dnw (\omega) \\
+    \D (\omega) =& \brackets{\epsilon _r} \Enw (\omega)
+\end{eqnarray}
+
+Keeping $\brackets{S}$ separate from $\brackets{\mu_r}$ and $\brackets{\epsilon_r}$ allows the PML to be handled independently from the materials being simulated.
+
+The $\omega$ will be ommitted from the equations.
+
+Considering only the diagonal terms in $\brackets{\mu_r}$, $\brackets{\epsilon_r}$ and $\brackets{\sigma}$, the final form of the Maxwell's Equations with UPML are \cite{empossible_3d_pml}:
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_x \nonumber \\
+    &= -\cfrac{c_0}{\mu_{xx}}\CExw
+    \label{eq:Hx_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_y \nonumber \\
+    &= -\cfrac{c_0}{\mu_{yy}}\CEyw
+    \label{eq:Hy_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Hh_z \nonumber \\
+    &= -\cfrac{c_0}{\mu_{zz}}\CEzw
+    \label{eq:Hz_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_x \nonumber \\
+    &= c_0\CHxw - \cfrac{\sigma_{xx}}{\epsilon_0}\Enw_x
+    \label{eq:Ex_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_y \nonumber \\
+    &= c_0\CHyw - \cfrac{\sigma_{yy}}{\epsilon_0}\Enw_y
+    \label{eq:Ey_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Dnw_z \nonumber \\
+    &= c_0\CHzw - \cfrac{\sigma_{zz}}{\epsilon_0}\Enw_z
+    \label{eq:Ez_upml_freq}
+\end{eqnarray}
+
+\begin{eqnarray}
+    \Dnw_x =& \epsilon_{xx} \Enw_x, \\
+    \Dnw_y =& \epsilon_{yy} \Enw_y, \\
+    \Dnw_z =& \epsilon_{zz} \Enw_z. 
+\end{eqnarray}
+
+\subsection{Conversion to the Time-Domain}
+First, assume no conductivity: $\brackets{\sigma} = 0$.
+
+Starting from \eqref{eq:Hx_upml_freq}:
+
+
+\begin{eqnarray}
+    j\omega \Hh_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hh_x + \cfrac{1}{j\omega}\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hh_x \nonumber \\
+    = -\cfrac{c_0}{\mu_{xx}}\CExw - \cfrac{1}{j\omega}\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CExw
+\end{eqnarray}
+
+In the time-domain becomes:
+
+\begin{eqnarray}
+    \partial_t\Hht_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x + \int_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{xx}}\CEx - \int_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau
+\end{eqnarray}
+
+Similarly, for the other components:
+
+\begin{eqnarray}
+    \partial_t\Hht_y + \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_y + \int_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_y(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{yy}}\CEy - \int_{\infty}^t\cfrac{c_0\sigma_y\Prime}{\epsilon_0\mu_{yy}}\CEy(\tau)d\tau
+\end{eqnarray}
+
+\begin{eqnarray}
+    \partial_t\Hht_z + \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Hht_z + \int_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_y\Prime}{\epsilon_0^2}\Hht_z(\tau)d\tau \nonumber \\
+    = -\cfrac{c_0}{\mu_{zz}}\CEz - \int_{\infty}^t\cfrac{c_0\sigma_z\Prime}{\epsilon_0\mu_{zz}}\CEz(\tau)d\tau
+\end{eqnarray}
+
+\subsection{The PML Parameters}
+
+
+
