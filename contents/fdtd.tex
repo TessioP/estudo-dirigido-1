@@ -2,19 +2,19 @@
 
 The Maxwell's equations are:
 
-\begin{eqnarray}
-    \rot \Et(t) = & -\partial _t \Bt(t), \\
-    \rot \Hht(t) = & \partial_t \Dt(t), \\
-    \Div \Bt(t) = & 0, \\
-    \Div \Dt(t) = & 0,
-\end{eqnarray}
+\begin{align}
+    \rot \Et(t) &= -\partial _t \Bt(t), \\
+    \rot \Hht(t) &= \partial_t \Dt(t), \\
+    \Div \Bt(t) &= 0, \\
+    \Div \Dt(t) &= 0,
+\end{align}
 where $\partial_t\cdot = \partialDerivative{\cdot}{t}$.
 
 The the constitutive relations are:
-\begin{eqnarray}
-    \Bt(t) = & \brackets{\mu_0\mu_r  (t)} \ast \Hht(t), \\
-    \Dt(t) = & \brackets{\epsilon_0 \epsilon_r  (t)} \ast \Et(t),
-\end{eqnarray}
+\begin{align}
+    \Bt(t) &= \brackets{\mu_0\mu_r  (t)} \ast \Hht(t), \\
+    \Dt(t) &= \brackets{\epsilon_0 \epsilon_r  (t)} \ast \Et(t),
+\end{align}
 where $\brackets{\cdot}$ represents a tensor.
 
 \subsection{Normalizing the Electric Fields}
@@ -31,12 +31,12 @@ The other parameters related to the electric field must also be normalized:
 
 Therefore, the normalized Maxwell's equations become:
 
-\begin{eqnarray}
-    \rot \En = & -\partial _t \Bt, \\
-    \rot \Hht = & \partial_t \Dn, \\
-    \Div \Bt = & 0, \\
-    \Div \Dn = & 0.
-\end{eqnarray}
+\begin{align}
+    \rot \En &= -\partial _t \Bt, \\
+    \rot \Hht &= \partial_t \Dn, \\
+    \Div \Bt &= 0, \\
+    \Div \Dn &= 0.
+\end{align}
 
 
 \subsection{Expanding Maxwell's Equations}
@@ -45,61 +45,61 @@ To expand the equations, it will be assumed that $\brackets{\mu_r}$ and $\bracke
 
 The equation $\rot \En = - \cfrac{\brackets{\mu_r}}{c_0} \partial _t \Bt$ becomes:
 
-\begin{eqnarray}
-    \partial_z\En_y - \partial_y\En_z =& \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
-    \partial_x\En_z - \partial_z\En_x =& \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
-    \partial_y\En_x - \partial_x\En_y =& \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
-\end{eqnarray}
+\begin{align}
+    \partial_z\En_y - \partial_y\En_z &= \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
+    \partial_x\En_z - \partial_z\En_x &= \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
+    \partial_y\En_x - \partial_x\En_y &= \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
+\end{align}
 
 The equation $\rot \Hht = \cfrac{1}{c_0} \partial _t \Dn$ becomes:
 
-\begin{eqnarray}
-    \partial_z\Hht_y - \partial_y\Hht_z =& \cfrac{1}{c_0} \partial_t \Dn_x, \\
-    \partial_x\Hht_z - \partial_z\Hht_x =& \cfrac{1}{c_0} \partial_t \Dn_y, \\
-    \partial_y\Hht_x - \partial_x\Hht_y =& \cfrac{1}{c_0} \partial_t \Dn_z.
-\end{eqnarray}
+\begin{align}
+    \partial_z\Hht_y - \partial_y\Hht_z &= \cfrac{1}{c_0} \partial_t \Dn_x, \\
+    \partial_x\Hht_z - \partial_z\Hht_x &= \cfrac{1}{c_0} \partial_t \Dn_y, \\
+    \partial_y\Hht_x - \partial_x\Hht_y &= \cfrac{1}{c_0} \partial_t \Dn_z.
+\end{align}
 
 Finally, the equation $ \Dn = \brackets{\epsilon_r} \En $ becomes:
 
-\begin{eqnarray}
-    \Dn_x =& \epsilon_{xx} \En_x, \label{eq:Dn_x}\\
-    \Dn_y =& \epsilon_{yy} \En_y, \label{eq:Dn_y}\\
-    \Dn_z =& \epsilon_{zz} \En_z. \label{eq:Dn_z}
-\end{eqnarray}
+\begin{align}
+    \Dn_x &= \epsilon_{xx} \En_x, \label{eq:Dn_x}\\
+    \Dn_y &= \epsilon_{yy} \En_y, \label{eq:Dn_y}\\
+    \Dn_z &= \epsilon_{zz} \En_z. \label{eq:Dn_z}
+\end{align}
 
 \subsection{Notation for Curl Terms}
 
-\begin{eqnarray}
-    \CEx =& \partial_z\En_y - \partial_y\En_z, \\
-    \CEy =& \partial_x\En_z - \partial_z\En_x, \\
-    \CEz =& \partial_y\En_x - \partial_x\En_y.
-\end{eqnarray}
+\begin{align}
+    \CEx &= \partial_z\En_y - \partial_y\En_z, \\
+    \CEy &= \partial_x\En_z - \partial_z\En_x, \\
+    \CEz &= \partial_y\En_x - \partial_x\En_y.
+\end{align}
 
-\begin{eqnarray}
-    \CHx =& \partial_z\Hht_y - \partial_y\Hht_z, \\
-    \CHy =& \partial_x\Hht_z - \partial_z\Hht_x, \\
-    \CHz =& \partial_y\Hht_x - \partial_x\Hht_y.
-\end{eqnarray}
+\begin{align}
+    \CHx &= \partial_z\Hht_y - \partial_y\Hht_z, \\
+    \CHy &= \partial_x\Hht_z - \partial_z\Hht_x, \\
+    \CHz &= \partial_y\Hht_x - \partial_x\Hht_y.
+\end{align}
 
 \subsection{Final Equations Form}
 
-\begin{eqnarray}
-    \CEx =& \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
-    \CEy =& \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
-    \CEz =& \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
-\end{eqnarray}
+\begin{align}
+    \CEx &= \cfrac{\mu_{xx}}{c_0} \partial_t \Hht_x, \\
+    \CEy &= \cfrac{\mu_{yy}}{c_0} \partial_t \Hht_y,\\
+    \CEz &= \cfrac{\mu_{zz}}{c_0} \partial_t \Hht_z.
+\end{align}
 
-\begin{eqnarray}
-    \CHx =& \cfrac{1}{c_0} \partial_t \Dn_x, \\
-    \CHy =& \cfrac{1}{c_0} \partial_t \Dn_y, \\
-    \CHz =& \cfrac{1}{c_0} \partial_t \Dn_z.
-\end{eqnarray}
+\begin{align}
+    \CHx &= \cfrac{1}{c_0} \partial_t \Dn_x, \\
+    \CHy &= \cfrac{1}{c_0} \partial_t \Dn_y, \\
+    \CHz &= \cfrac{1}{c_0} \partial_t \Dn_z.
+\end{align}
 
-\begin{eqnarray}
-    \Dn_x =& \epsilon_{xx} \En_x, \\
-    \Dn_y =& \epsilon_{yy} \En_y, \\
-    \Dn_z =& \epsilon_{zz} \En_z.
-\end{eqnarray}
+\begin{align}
+    \Dn_x &= \epsilon_{xx} \En_x, \label{eq:dnx_update} \\
+    \Dn_y &= \epsilon_{yy} \En_y, \label{eq:dny_update} \\
+    \Dn_z &= \epsilon_{zz} \En_z. \label{eq:dnz_update}
+\end{align}
 
 
 \section{Finite-Difference Approximation to Maxwell's Equations}
@@ -144,10 +144,10 @@ Consider, first, the grid for $\Hht_x$:
 
 Based on this schematic, it is possible to write \cite{rumpf_book}:
 
-\begin{eqnarray}
-    \partialDerivative{\En_z^{i,j,k}}{y}(t) =& \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy}, \\
-    \partialDerivative{\En_y^{i,j,k}}{z}(t) =& \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dy}.
-\end{eqnarray}
+\begin{align}
+    \partialDerivative{\En_z\Big|^{i,j,k}_t}{y} =& \cfrac{\En_z\Big|^{i,j+1,k}_t-\En_z\Big|^{i,j,k}_t}{\dy}, \\
+    \partialDerivative{\En_y\Big|^{i,j,k}_t}{z} =& \cfrac{\En_y\Big|^{i,j,k+1}_t-\En_y\Big|^{i,j,k}_t}{\dy}.
+\end{align}
 
 Note that this space derivatives exists at time instant $t$ and they exist at the same point as $\Hht_x^{i,j,k}$.
 
@@ -155,103 +155,117 @@ We need to explicitly write the time on the Yee grid equations, since it is esse
 
 Hence, the $\CEx$ final equation is:
 
-\begin{eqnarray}
-    \CEx =& \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy} - \nonumber \\ 
-    \qquad & \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dz}
-    \label{eq:CEx}
-\end{eqnarray}
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+        \CEx = \cfrac{\En_z\Big|^{i,j+1,k}_t-\En_z\Big|^{i,j,k}_t}{\dy} - \cfrac{\En_y\Big|^{i,j,k+1}_t-\En_y\Big|^{i,j,k}_t}{\dz}
+        \label{eq:CEx}
+    $}
+\end{align}
+
 
 Now, for the time derivative $\partial_t \Hht_x$ to exists at time $t$:
 
 \begin{equation}
-    \partial_t \Hht_x^{i,j,k}(t) = \cfrac{\Hht_x^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_x^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt}.
+    \partial_t \Hht_x\Big|^{i,j,k}_t = \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}} - \Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dt}.
 \end{equation}
 
 So, the finite-difference equation for $\Hht_x$ becomes:
 
-\begin{eqnarray}
-    \cfrac{\En_z^{i, j+1, k}(t)-\En_z^{i, j, k}(t)}{\dy} - \cfrac{\En_y^{i, j, k+1}(t)-\En_y^{i, j, k}(t)}{\dy} \nonumber \\ 
-    =\cfrac{\mu_{xx}^{i,j,k}}{c_0}\cfrac{\Hht_x^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_x^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt}.
+\begin{align}
+    \cfrac{\En_z\Big|^{i,j+1,k}_{t}-\En_z\Big|^{i,j,k}_{t}}{\dy} - \cfrac{\En_y\Big|^{i,j,k+1}_{t}-\En_y\Big|^{i,j,k}_{t}}{\dy} \nonumber \\ 
+    =\cfrac{\mu_{xx}\Big|^{i,j,k}}{c_0}\cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}} - \Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dt}.
     \label{eq:fd_hx}
-\end{eqnarray}
+\end{align}
 
 Similarly, it is possible to write the curl equations for the other components of $\En$ and for $\Hht$:
 
-\begin{eqnarray}
-    \CEy =& \cfrac{\En_x^{i, j, k+1}(t)-\En_x^{i, j, k}(t)}{\dz} - \nonumber \\ 
-    \qquad & \cfrac{\En_z^{i+1, j, k}(t)-\En_z^{i, j, k}(t)}{\dx}
+
+
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+    \CEy = \cfrac{\En_x\Big|^{i,j,k+1}_{t}-\En_x\Big|^{i,j,k}_{t}}{\dz} - \cfrac{\En_z\Big|^{i+1,j,k}_{t}-\En_z\Big|^{i,j,k}_{t}}{\dx}
     \label{eq:CEy}
-\end{eqnarray}
+    $}
+\end{align}
 
-\begin{eqnarray}
-    \CEz =& \cfrac{\En_y^{i+1, j, k}(t)-\En_y^{i, j, k}(t)}{\dx} - \nonumber \\ 
-    \qquad & \cfrac{\En_x^{i, j+1, k}(t)-\En_x^{i, j+1, k}(t)}{\dy}
-    \label{eq:CEz}
-\end{eqnarray}
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+        \CEz = \cfrac{\En_y\Big|^{i+1,j,k}_{t}-\En_y\Big|^{i,j,k}_{t}}{\dx} - \cfrac{\En_x\Big|^{i,j+1,k}_{t}-\En_x\Big|^{i,j,k}_{t}}{\dy}
+        \label{eq:CEz}
+    $}
+\end{align}
 
-\begin{eqnarray}
-    \CHx =& \cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} - \nonumber \\ 
-    \qquad & \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz}
-    \label{eq:CHx}
-\end{eqnarray}
-
-
-\begin{eqnarray}
-    \CHy =& \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} - \nonumber \\ 
-    \qquad & \cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx}
-    \label{eq:CHy}
-\end{eqnarray}
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+        \CHx = \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dy} - \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dz}
+        \label{eq:CHx}
+    $}
+\end{align}
 
 
-\begin{eqnarray}
-    \CHz =& \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} - \nonumber \\ 
-    \qquad & \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy}
-    \label{eq:CHz}
-\end{eqnarray}
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+        \CHy = \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dz} - \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dx}
+        \label{eq:CHy}
+    $}
+\end{align}
+
+
+\begin{align}
+    \resizebox{.8\hsize}{!}{$
+        \CHz = \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dx} - \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dy}
+        \label{eq:CHz}
+    $}
+\end{align}
+
 
 Finally, the finite-difference equations are, for $\Hht_y$:
 
-\begin{eqnarray}
-    \cfrac{\En_x^{i, j, k+1}(t)-\En_x^{i, j, k}(t)}{\dz} - \cfrac{\En_z^{i+1, j, k}(t)-\En_z^{i, j, k}(t)}{\dx} \nonumber \\ 
-    =\cfrac{\mu_{yy}^{i,j,k}}{c_0}\cfrac{\Hht_y^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_y^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt},
+\begin{align}
+    \cfrac{\En_x\Big|^{i,j,k+1}_{t}-\En_x\Big|^{i,j,k}_{t}}{\dz} - \cfrac{\En_z\Big|^{i+1,j,k}_{t}-\En_z\Big|^{i,j,k}_{t}}{\dx} \nonumber \\ 
+    =\cfrac{\mu_{yy}\Big|^{i,j,k}}{c_0}\cfrac{\Hht_y\Big|^{i,j,k}_{t+\dttwo} - \Hht_y\Big|^{i,j,k}_{t-\dttwo}}{\dt},
     \label{eq:fd_hy}
-\end{eqnarray}
+\end{align}
 
 for $\Hht_z$:
 
-\begin{eqnarray}
-    \cfrac{\En_y^{i+1, j, k}(t)-\En_y^{i, j, k}(t)}{\dx} - \cfrac{\En_x^{i, j+1, k}(t)-\En_x^{i, j+1, k}(t)}{\dy} \nonumber \\
-    =\cfrac{\mu_{zz}^{i,j,k}}{c_0}\cfrac{\Hht_z^{i,j,k}(t+\nicefrac{\dt}{2}) - \Hht_z^{i,j,k}(t-\nicefrac{\dt}{2})}{\dt},
+\begin{align}
+    \cfrac{\En_y\Big|^{i+1,j,k}_{t}-\En_y\Big|^{i,j,k}_{t}}{\dx} - \cfrac{\En_x\Big|^{i,j+1,k}_{t}-\En_x\Big|^{i,j,k}_{t}}{\dy} \nonumber \\
+    =\cfrac{\mu_{zz}^{i,j,k}}{c_0}\cfrac{\Hht_z\Big|^{i,j,k}_{t+\dttwo} - \Hht_z\Big|^{i,j,k}_{t-\dttwo}}{\dt},
     \label{eq:fd_hz}
-\end{eqnarray}
+\end{align}
 
 for $\En_x$:
 
-\begin{eqnarray}
-    &\cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} - \nonumber\\ 
-    & \cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} = \nonumber\\
-    &\cfrac{\epsilon_{xx}^{i,j,k}}{c_0}\cfrac{\En_x^{i,j,k}(t+\nicefrac{\dt}{2})-\En_x^{i,j,k}(t)}{\dt},
-    \label{eq:fd_ex}
-\end{eqnarray}
+\begin{small}
+    \begin{align}
+        \cfrac{\Hht_z\Big|^{i,j,k}_{t+\dttwo}-\Hht_z\Big|^{i,j-1,k}_{t+\dttwo}}{\dy} - \cfrac{\Hht_y\Big|^{i,j,k}_{t+\dttwo}-\Hht_y\Big|^{i,j,k-1}_{t+\dttwo}}{\dz} \nonumber\\
+        =
+        \cfrac{\epsilon_{xx}\Big|^{i,j,k}}{c_0}\cfrac{\En_x\Big|^{i,j,k}_{t+\dt}-\En_x\Big|^{i,j,k}_{t}}{\dt},
+        \label{eq:fd_ex}
+    \end{align}  
+\end{small}
+
 
 for $\En_y$:
 
-\begin{eqnarray}
-    &\cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j, k-1}(t+\nicefrac{\dt}{2})}{\dz} - \nonumber \\
-    &\cfrac{\Hht_z^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_z^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} = \nonumber\\
-    &\cfrac{\epsilon_{yy}^{i,j,k}}{c_0}\cfrac{\En_y^{i,j,k}(t+\nicefrac{\dt}{2})-\En_y^{i,j,k}(t)}{\dt},
-    \label{eq:fd_ey}
-\end{eqnarray}
-
+\begin{small}
+    \begin{align}
+        \cfrac{\Hht_x\Big|^{i,j,k}_{t+\dttwo}-\Hht_x\Big|^{i,j,k-1}_{t+\dttwo}}{\dz} - \cfrac{\Hht_z\Big|^{i,j,k}_{t+\dttwo}-\Hht_z\Big|^{i-1,j,k}_{t+\dttwo}}{\dx} \nonumber\\ =
+        \cfrac{\epsilon_{yy}\Big|^{i,j,k}}{c_0}\cfrac{\En_y\Big|^{i,j,k}_{t+\dt}-\En_y\Big|^{i,j,k}_{t}}{\dt},
+        \label{eq:fd_ey}
+    \end{align}
+\end{small}
 and for $\En_z$:
 
-\begin{eqnarray}
-    &\cfrac{\Hht_y^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_y^{i-1, j, k}(t+\nicefrac{\dt}{2})}{\dx} - \nonumber \\ 
-    & \cfrac{\Hht_x^{i, j, k}(t+\nicefrac{\dt}{2})-\Hht_x^{i, j-1, k}(t+\nicefrac{\dt}{2})}{\dy} = \nonumber\\
-    &\cfrac{\epsilon_{zz}^{i,j,k}}{c_0}\cfrac{\En_z^{i,j,k}(t+\nicefrac{\dt}{2})-\En_z^{i,j,k}(t)}{\dt}.
-    \label{eq:fd_ez}
-\end{eqnarray}
-
+\begin{small}
+    \begin{align}
+        \cfrac{\Hht_y\Big|^{i,j,k}_{t+\dttwo}-\Hht_y\Big|^{i-1,j,k}_{t+\dttwo}}{\dx} - \cfrac{\Hht_x\Big|^{i,j,k}_{t+\dttwo}-\Hht_x\Big|^{i,j-1,k}_{t+\dttwo}}{\dy} \nonumber\\
+        =
+        \cfrac{\epsilon_{zz}^{i,j,k}}{c_0}\cfrac{\En_z\Big|^{i,j,k}_{t+\dt}-\En_z\Big|^{i,j,k}_{t}}{\dt}.
+        \label{eq:fd_ez}
+    \end{align}
+\end{small}
 
 To ease the implementation, the vector $\En$ will exists at integer step times $(0, \dt, 2\dt, \dots)$ meanwhile the vector $\Hht$ will exists at half time steps $(\nicefrac{\dt}{2}, 3\nicefrac{\dt}{2}, 5\nicefrac{\dt}{2}, \dots)$.
 
@@ -305,19 +319,19 @@ The loss is incorporated into the permittivity through the electrical conductivi
 
 The Maxwell's Equations in the frequency domain are:
 
-\begin{eqnarray}
-    \rot \E (\omega) =& -j\omega \mu_0 \brackets{\mu_r} \Hh (\omega) \\
-    \rot \Hh (\omega) =& \sigma \E(\omega) + j\omega\brackets{S} \D (\omega) \\
-    \D (\omega) =& \epsilon_0 \brackets{\epsilon _r}\E (\omega)
-\end{eqnarray}
+\begin{align}
+    \rot \E (\omega) &= -j\omega \mu_0 \brackets{\mu_r} \Hh (\omega) \\
+    \rot \Hh (\omega) &= \sigma \E(\omega) + j\omega\brackets{S} \D (\omega) \\
+    \D (\omega) &= \epsilon_0 \brackets{\epsilon _r}\E (\omega)
+\end{align}
 
 The PML $\brackets{S}$ can be incorporated as:
 
-\begin{eqnarray}
-    \rot \E (\omega) =& -j\omega \mu_0 \brackets{\mu_r} \brackets{S} \Hh (\omega) \\
-    \rot \Hh (\omega) =& \sigma \E(\omega) + j\omega \D (\omega) \\
-    \D (\omega) =& \epsilon_0 \brackets{\epsilon _r} \E (\omega)
-\end{eqnarray}
+\begin{align}
+    \rot \E (\omega) &= -j\omega \mu_0 \brackets{\mu_r} \brackets{S} \Hh (\omega) \\
+    \rot \Hh (\omega) &= \sigma \E(\omega) + j\omega \D (\omega) \\
+    \D (\omega) &= \epsilon_0 \brackets{\epsilon _r} \E (\omega)
+\end{align}
 
 Normalizing the electric field:
 
@@ -331,11 +345,11 @@ Normalizing the electric field:
 
 Hence, the equations become:
 
-\begin{eqnarray}
-    \rot \Enw (\omega) =& -j\omega\cfrac{\brackets{\mu_r}}{c_0} \brackets{S} \Hh (\omega) \\
-    \rot \Hh (\omega) =& \eta_0 \sigma \Enw(\omega) + \cfrac{j\omega}{c_0}\brackets{S} \Dnw (\omega) \\
-    \D (\omega) =& \brackets{\epsilon _r} \Enw (\omega)
-\end{eqnarray}
+\begin{align}
+    \rot \Enw (\omega) &= -j\omega\cfrac{\brackets{\mu_r}}{c_0} \brackets{S} \Hh (\omega) \\
+    \rot \Hh (\omega) &= \eta_0 \sigma \Enw(\omega) + \cfrac{j\omega}{c_0}\brackets{S} \Dnw (\omega) \\
+    \D (\omega) &= \brackets{\epsilon _r} \Enw (\omega)
+\end{align}
 
 Keeping $\brackets{S}$ separate from $\brackets{\mu_r}$ and $\brackets{\epsilon_r}$ allows the PML to be handled independently from the materials being simulated.
 
@@ -343,47 +357,51 @@ The $\omega$ will be ommitted from the equations.
 
 Considering only the diagonal terms in $\brackets{\mu_r}$, $\brackets{\epsilon_r}$ and $\brackets{\sigma}$, the final form of the Maxwell's Equations with UPML are \cite{empossible_3d_pml}:
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_x \nonumber \\
-    &= -\cfrac{c_0}{\mu_{xx}}\CExw
-    \label{eq:Hx_upml_freq}
-\end{eqnarray}
+\begin{small}
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_y \nonumber \\
-    &= -\cfrac{c_0}{\mu_{yy}}\CEyw
-    \label{eq:Hy_upml_freq}
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_x \nonumber \\
+        &= -\cfrac{c_0}{\mu_{xx}}\CExw
+        \label{eq:Hx_upml_freq}
+    \end{align}
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Hh_z \nonumber \\
-    &= -\cfrac{c_0}{\mu_{zz}}\CEzw
-    \label{eq:Hz_upml_freq}
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Hh_y \nonumber \\
+        &= -\cfrac{c_0}{\mu_{yy}}\CEyw
+        \label{eq:Hy_upml_freq}
+    \end{align}
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_x \nonumber \\
-    &= c_0\CHxw - \cfrac{\sigma_{xx}}{\epsilon_0}\Enw_x
-    \label{eq:Ex_upml_freq}
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Hh_z \nonumber \\
+        &= -\cfrac{c_0}{\mu_{zz}}\CEzw
+        \label{eq:Hz_upml_freq}
+    \end{align}
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_y \nonumber \\
-    &= c_0\CHyw - \cfrac{\sigma_{yy}}{\epsilon_0}\Enw_y
-    \label{eq:Ey_upml_freq}
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_x \nonumber \\
+        &= c_0\CHxw - \cfrac{\sigma_{xx}}{\epsilon_0}\Enw_x
+        \label{eq:Ex_upml_freq}
+    \end{align}
 
-\begin{eqnarray}
-    &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Dnw_z \nonumber \\
-    &= c_0\CHzw - \cfrac{\sigma_{zz}}{\epsilon_0}\Enw_z
-    \label{eq:Ez_upml_freq}
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}}\inverse \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}} \Dnw_y \nonumber \\
+        &= c_0\CHyw - \cfrac{\sigma_{yy}}{\epsilon_0}\Enw_y
+        \label{eq:Ey_upml_freq}
+    \end{align}
 
-\begin{eqnarray}
-    \Dnw_x =& \epsilon_{xx} \Enw_x, \\
-    \Dnw_y =& \epsilon_{yy} \Enw_y, \\
-    \Dnw_z =& \epsilon_{zz} \Enw_z. 
-\end{eqnarray}
+    \begin{align}
+        &j\omega\pare{1 + \cfrac{\sigma_x\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_y\Prime}{j\omega\epsilon_0}} \pare{1 + \cfrac{\sigma_z\Prime}{j\omega\epsilon_0}}\inverse \Dnw_z \nonumber \\
+        &= c_0\CHzw - \cfrac{\sigma_{zz}}{\epsilon_0}\Enw_z
+        \label{eq:Ez_upml_freq}
+    \end{align}
+
+    \begin{align}
+        \Dnw_x =& \epsilon_{xx} \Enw_x, \\
+        \Dnw_y =& \epsilon_{yy} \Enw_y, \\
+        \Dnw_z =& \epsilon_{zz} \Enw_z. 
+    \end{align}
+
+\end{small}
 
 \subsection{Conversion to the Time-Domain}
 First, assume no conductivity: $\brackets{\sigma} = 0$.
@@ -391,79 +409,310 @@ First, assume no conductivity: $\brackets{\sigma} = 0$.
 Starting from \eqref{eq:Hx_upml_freq}:
 
 
-\begin{eqnarray}
+\begin{align}
     j\omega \Hh_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hh_x + \cfrac{1}{j\omega}\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hh_x \nonumber \\
     = -\cfrac{c_0}{\mu_{xx}}\CExw - \cfrac{1}{j\omega}\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CExw
-\end{eqnarray}
+\end{align}
 
 In the time-domain becomes:
 
-\begin{eqnarray}
+\begin{align}
     \partial_t\Hht_x + \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x + \int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\
     = -\cfrac{c_0}{\mu_{xx}}\CEx - \int\limits_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau
     \label{eq:Hx_upml_time}
-\end{eqnarray}
+\end{align}
 
 Similarly, for the other components:
 
-\begin{eqnarray}
-    \partial_t\Hht_y + \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_y + \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_y(\tau)d\tau \nonumber \\
-    = -\cfrac{c_0}{\mu_{yy}}\CEy - \int\limits_{\infty}^t\cfrac{c_0\sigma_y\Prime}{\epsilon_0\mu_{yy}}\CEy(\tau)d\tau
+\begin{align}
+    \partial_t\Hht_y &+ \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_y + \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_y(\tau)d\tau \nonumber \\
+    &= -\cfrac{c_0}{\mu_{yy}}\CEy - \int\limits_{\infty}^t\cfrac{c_0\sigma_y\Prime}{\epsilon_0\mu_{yy}}\CEy(\tau)d\tau
     \label{eq:Hy_upml_time}
-\end{eqnarray}
+\end{align}
 
-\begin{eqnarray}
-    \partial_t\Hht_z + \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Hht_z + \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_y\Prime}{\epsilon_0^2}\Hht_z(\tau)d\tau \nonumber \\
-    = -\cfrac{c_0}{\mu_{zz}}\CEz - \int\limits_{\infty}^t\cfrac{c_0\sigma_z\Prime}{\epsilon_0\mu_{zz}}\CEz(\tau)d\tau
+\begin{align}
+    \partial_t\Hht_z
+    &+
+    \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Hht_z
+    +
+    \int\limits_{-\infty}^t\cfrac{\sigma_x\Prime\sigma_y\Prime}{\epsilon_0^2}\Hht_z(\tau)d\tau \nonumber \\
+    &= 
+    -\cfrac{c_0}{\mu_{zz}}\CEz
+    -\int\limits_{\infty}^t\cfrac{c_0\sigma_z\Prime}{\epsilon_0\mu_{zz}}\CEz(\tau)d\tau
     \label{eq:Hz_upml_time}
-\end{eqnarray}
+\end{align}
+
+\begin{align}
+    \partial_t\Dn_x
+    &+
+    \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Dn_x
+    +
+    \cfrac{\sigma_y\Prime \sigma_z\Prime}{\epsilon_0^2} \int\limits_{-\infty}^t\Dn_x(\tau)d\tau 
+    \nonumber \\
+    &=
+    c_0\CHx
+    +
+    \cfrac{c_0\sigma_x\Prime}{\epsilon_0}\int\limits_{-\infty}^t\CHx(\tau)d\tau
+    \label{eq:Dx_upml_time}
+\end{align}
+
+\begin{align}
+    \partial_t\Dn_y
+    &+
+    \cfrac{\sigma_x\Prime + \sigma_z\Prime}{\epsilon_0}\Dn_y
+    +
+    \cfrac{\sigma_x\Prime \sigma_z\Prime}{\epsilon_0^2} \int\limits_{-\infty}^t\Dn_y(\tau)d\tau 
+    \nonumber \\
+    &=
+    c_0\CHy
+    +
+    \cfrac{c_0\sigma_y\Prime}{\epsilon_0}\int\limits_{-\infty}^t\CHy(\tau)d\tau
+    \label{eq:Dy_upml_time}
+\end{align}
+
+\begin{align}
+    \partial_t\Dn_z
+    &+
+    \cfrac{\sigma_x\Prime + \sigma_y\Prime}{\epsilon_0}\Dn_z
+    +
+    \cfrac{\sigma_x\Prime \sigma_y\Prime}{\epsilon_0^2} \int\limits_{-\infty}^t\Dn_z(\tau)d\tau 
+    \nonumber \\
+    &=
+    c_0\CHz
+    +
+    \cfrac{c_0\sigma_z\Prime}{\epsilon_0}\int\limits_{-\infty}^t\CHz(\tau)d\tau
+    \label{eq:Dz_upml_time}
+\end{align}
+
+The update equations for $\Dn$ are the same as \eqref{eq:dnx_update}, \eqref{eq:dny_update} and \eqref{eq:dnz_update}.
 
 \subsection{Numerical Approximations}
 
-Remark: for numerical implementation, Yee Grid will be used.
+Remark: Yee cell will be considered for numerical implementation.
 
 Starting from \eqref{eq:Hx_upml_time}, each term of equation will be approximated as shown.
 
 For the term 1, the time approximation will be the same as used before:
 
-\begin{eqnarray}
+\begin{align}
     \partial_t\Hht_x(t) \approx \cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}-\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{\dt}
-\end{eqnarray}
+\end{align}
 
 For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by averaging the values at $t + \nicefrac{\dt}{2}$ and $t - \nicefrac{\dt}{2}$:
 
-\begin{eqnarray}
+\begin{align}
+    \resizebox{.9\hsize}{!}{$
     \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\Hht_x(t)\approx
     \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}+\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{2}
-\end{eqnarray}
+    $}
+\end{align}
 
 For the term 3, it is necessary to approximate the integral with a summation:
 
-\begin{eqnarray}
+\begin{align}
     \int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \approx \cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2} \sum_{T=\nicefrac{\dt}{2}}^{t + \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T}\dt
-\end{eqnarray}
+\end{align}
 
 However, in this way the summation is going future on time. The fix is simple: just pull out the last term from summation and do the integration over half a time step:
 
-\begin{eqnarray}
+\begin{align}
     &\int\limits_{-\infty}^t\cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2}\Hht_x(\tau)d\tau \nonumber \\ \nonumber
     &\approx \cfrac{\sigma_y\Prime\sigma_z\Prime}{\epsilon_0^2} \left( \Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k} \cfrac{\dt}{2} + \sum\limits_{T=\nicefrac{\dt}{2}}^{t - \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T}\dt \right) \\ \nonumber
     &\approx\cfrac{\sigma_y\Prime\sigma_z\Prime\dt}{\epsilon_0^2} \left( \cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}-\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{4} \right. \\ & \left. + \sum\limits_{T=\nicefrac{\dt}{2}}^{t - \nicefrac{\dt}{2}}\Hht_x\Big|^{i,j,k}_{T} \right)
-\end{eqnarray}
+\end{align}
+
 
 For the term 4, the curl approximation for will be the same as in \eqref{eq:CEx}:
 
-\begin{eqnarray}
+\begin{align}
     -\cfrac{c_0}{\mu_{xx}}\CEx \approx -\cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}}\CEx\Big|^{i,j,k}_{t}
-\end{eqnarray}
+\end{align}
 
 For the term 5, as for the term 3, the integral will be approximated with a summation:
 
-\begin{eqnarray}
+\begin{align}
     - \int\limits_{\infty}^t\cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}}\CEx(\tau)d\tau = - \cfrac{c_0\sigma_x\Prime}{\epsilon_0\mu_{xx}} \int\limits_{\infty}^t\CEx(\tau)d\tau \nonumber \\
     \approx - \cfrac{c_0\sigma_x^H\Big|^{i,j,k}}{\epsilon_0\mu_{xx}\Big|^{i,j,k}} \sum\limits_{T=0}^{t}\CEx\Big|^{i,j,k}_{T}\dt \nonumber \\
     \approx - \cfrac{c_0\dt\sigma_x^H\Big|^{i,j,k}}{\epsilon_0\mu_{xx}\Big|^{i,j,k}} \sum\limits_{T=0}^{t}\CEx\Big|^{i,j,k}_{T}
-\end{eqnarray}
+\end{align}
+
+\subsection{Update equations}
+
+Starting from the numerical approximation of \eqref{eq:Hx_upml_time}:
+
+\begin{small}
+    \begin{align}
+        &\cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}-\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{\dt} \nonumber \\ 
+        &+ \cfrac{\sigma_y\Prime + \sigma_z\Prime}{\epsilon_0}\cfrac{\Hht_x\Big|_{(t+\nicefrac{\dt}{2})}^{i,j,k}+\Hht_x\Big|^{i,j,k}_{(t-\nicefrac{\dt}{2})}}{2}  \nonumber \\
+        &= -\cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}}\CEx\Big|^{i,j,k}_{t} - \cfrac{c_0\dt\sigma_x^H\Big|^{i,j,k}}{\epsilon_0\mu_{xx}\Big|^{i,j,k}} \sum\limits_{T=0}^{t}\CEx\Big|^{i,j,k}_{T}
+    \end{align}
+\end{small}
+it is possible to isolate $ \Hht_x\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k}$ as:
+
+\begin{align}
+    \Hht_x\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} &= \mxone\Big|^{i,j,k} \Hht_x\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
+    \nonumber \\
+    & + \mxtwo\Big|^{i,j,k}\CEx\Big|^{i,j,k}_{t} + \mxthree \ICEx\Big|^{i,j,k}_{t} 
+    \nonumber \\
+    &+ \mxfour \IHx\Big|^{i,j,k}_{t},
+\end{align}
+where:
+\begin{align}
+    \mxzero\Big|^{i,j,k} = \cfrac{1}{\dt} + \cfrac{\sigma_y\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} \nonumber\\ + \cfrac{\sigma_y\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2}
+\end{align}
+
+\begin{align}
+    &\mxone\Big|^{i,j,k} = \cfrac{1}{\mxzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} \right. 
+    \nonumber \\
+    &\left.- \cfrac{\sigma_y\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_y\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right]
+\end{align}
+
+
+\begin{align}
+    \mxtwo\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}}
+    \\
+    \mxthree\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_x\Prime\Big|^{i,j,k}}{\mu_{xx}\Big|^{i,j,k}}
+    \\
+    \mxfour\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{\dt}{\epsilon_0^2} \sigma_y\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k}
+\end{align}
+
+\begin{align}
+    \ICEx\Big|^{i,j,k}_t &= \sum\limits_{T=0}^t\CEx\Big|^{i,j,k}_T
+    \\
+    \IHx\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}} &= \sum\limits_{T=\nicefrac{\dt}{2}}^{t-\nicefrac{\dt}{2}} \Hht_x\Big|^{i,j,k}_T
+\end{align}
+
+Similarly, is possible to deduce the update equations for the other components starting from \eqref{eq:Hy_upml_time}, \eqref{eq:Hz_upml_time}, \eqref{eq:Dx_upml_time}, \eqref{eq:Dy_upml_time} and \eqref{eq:Dz_upml_time}. The results are as following.
+
+For $\Hht_y$:
+
+\begin{align}
+    \Hht_y\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} &= \myone\Big|^{i,j,k} \Hht_y\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
+    \nonumber \\
+    & + \mytwo\Big|^{i,j,k}\CEy\Big|^{i,j,k}_{t} + \mythree \ICEy\Big|^{i,j,k}_{t} 
+    \nonumber \\
+    &+ \myfour \IHy\Big|^{i,j,k}_{t},
+\end{align}
+where:
+\begin{align}
+    \myzero\Big|^{i,j,k} = \cfrac{1}{\dt} + \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} \nonumber\\ + \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2}
+\end{align}
+
+\begin{align}
+    &\myone\Big|^{i,j,k} = \cfrac{1}{\myzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} \right. 
+    \nonumber \\
+    &\left.- \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right]
+\end{align}
+
+\begin{align}
+    \mytwo\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{yy}\Big|^{i,j,k}}
+    \\
+    \mythree\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_y\Prime\Big|^{i,j,k}}{\mu_{yy}\Big|^{i,j,k}}
+    \\
+    \myfour\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{\dt}{\epsilon_0^2} \sigma_x\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k}
+\end{align}
+
+\begin{align}
+    \ICEy\Big|^{i,j,k}_t &= \sum\limits_{T=0}^t\CEy\Big|^{i,j,k}_T
+    \\
+    \IHy\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}} &= \sum\limits_{T=\nicefrac{\dt}{2}}^{t-\nicefrac{\dt}{2}} \Hht_y\Big|^{i,j,k}_T
+\end{align}
+
+For $\Hht_z$:
+
+\begin{align}
+    \Hht_z\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} &= \mzone\Big|^{i,j,k} \Hht_z\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
+    \nonumber \\
+    & + \mztwo\Big|^{i,j,k}\CEz\Big|^{i,j,k}_{t} + \mzthree \ICEz\Big|^{i,j,k}_{t} 
+    \nonumber \\
+    &+ \mzfour \IHz\Big|^{i,j,k}_{t},
+\end{align}
+where:
+\begin{align}
+    \mzzero\Big|^{i,j,k} = \cfrac{1}{\dt} + \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_y\Prime\Big|^{i,j,k}}{2\epsilon_0} \nonumber\\ + \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2}
+\end{align}
+
+\begin{align}
+    &\mzone\Big|^{i,j,k} = \cfrac{1}{\mzzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} \right. 
+    \nonumber \\
+    &\left.- \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_y\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right]
+\end{align}
+
+
+\begin{align}
+    \mztwo\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{zz}\Big|^{i,j,k}}
+    \\
+    \mzthree\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_z\Prime\Big|^{i,j,k}}{\mu_{zz}\Big|^{i,j,k}}
+    \\
+    \mzfour\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{\dt}{\epsilon_0^2} \sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k}
+\end{align}
+
+\begin{align}
+    \ICEz\Big|^{i,j,k}_t &= \sum\limits_{T=0}^t\CEz\Big|^{i,j,k}_t
+    \\
+    \IHz\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}} &= \sum\limits_{T=\nicefrac{\dt}{2}}^{t-\nicefrac{\dt}{2}} \Hht_z\Big|^{i,j,k}_T
+\end{align}
+
+For $\Dn_x$:
+
+\begin{align}
+    &\Dn_x\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \mxone\Big|^{i,j,k} \Dn_x\Big|_{t}^{i,j,k} 
+    \nonumber \\
+    & \quad + \mxtwo\Big|^{i,j,k}\CHx\Big|^{i,j,k}_{t+\dttwo} + \mxthree \ICHx\Big|^{i,j,k}_{t-\dttwo} 
+    \nonumber \\
+    & \quad + \mxfour \IDx\Big|^{i,j,k}_{t},
+\end{align}
+where:
+
+\begin{align}
+    \ICHx\Big|^{i,j,k}_{t-\dttwo} &= \sum\limits_{T=\dttwo}^{t-\dttwo}\CHx\Big|^{i,j,k}_T
+    \\
+    \IDx\Big|^{i,j,k}_{t} &= \sum\limits_{T=0}^{t} \Dn_x\Big|^{i,j,k}_T
+\end{align}
+
+
+For $\Dn_y$:
+
+\begin{align}
+    &\Dn_y\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \myone\Big|^{i,j,k} \Dn_y\Big|_{t}^{i,j,k} 
+    \nonumber \\
+    & \quad + \mytwo\Big|^{i,j,k}\CHy\Big|^{i,j,k}_{t+\dttwo} + \mythree \ICHy\Big|^{i,j,k}_{t-\dttwo} 
+    \nonumber \\
+    & \quad + \myfour \IDy\Big|^{i,j,k}_{t},
+\end{align}
+where:
+
+\begin{align}
+    \ICHy\Big|^{i,j,k}_{t-\dttwo} &= \sum\limits_{T=\dttwo}^{t-\dttwo}\CHy\Big|^{i,j,k}_T
+    \\
+    \IDy\Big|^{i,j,k}_{t} &= \sum\limits_{T=0}^{t} \Dn_y\Big|^{i,j,k}_T
+\end{align}
+
+
+For $\Dn_z$:
+
+\begin{align}
+    &\Dn_z\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \mzone\Big|^{i,j,k} \Dn_z\Big|_{t}^{i,j,k} 
+    \nonumber \\
+    & \quad + \mztwo\Big|^{i,j,k}\CHz\Big|^{i,j,k}_{t+\dttwo} + \mzthree \ICHz\Big|^{i,j,k}_{t-\dttwo} 
+    \nonumber \\
+    & \quad + \mzfour \IDz\Big|^{i,j,k}_{t},
+\end{align}
+where:
+
+\begin{align}
+    \ICHz\Big|^{i,j,k}_{t-\dttwo} &= \sum\limits_{T=\dttwo}^{t-\dttwo}\CHz\Big|^{i,j,k}_T
+    \\
+    \IDz\Big|^{i,j,k}_{t} &= \sum\limits_{T=0}^{t} \Dn_z\Big|^{i,j,k}_T
+\end{align}
+
+For $\En_x$:
+
+\begin{align}
+    \En_x\Big|^{i,j,k}_{t+\dt} = \mEx \Dn_x\Big|^{i,j,k}_{t+\dt} \\
+    \En_y\Big|^{i,j,k}_{t+\dt} = \mEy \Dn_y\Big|^{i,j,k}_{t+\dt} \\
+    \En_z\Big|^{i,j,k}_{t+\dt} = \mEz \Dn_z\Big|^{i,j,k}_{t+\dt}
+\end{align}
 
 \subsection{The PML Parameters}
 
