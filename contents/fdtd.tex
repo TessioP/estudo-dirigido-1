@@ -315,6 +315,18 @@ And, for absorb all waves in all boundaries,
 
 The loss is incorporated into the permittivity through the electrical conductivity $\sigma$ as $\tilde{\epsilon} = \epsilon_r + \cfrac{\sigma}{j\omega \epsilon_0}$.
 
+\subsection{The PML Parameters}
+
+From \cite{rumpf_book}:
+
+\begin{align}
+    \sigma_x\Prime(x) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{x}{L_x}}^3 \\
+    \sigma_y\Prime(y) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{y}{L_y}}^3 \\
+    \sigma_z\Prime(z) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{z}{L_z}}^3,
+\end{align}
+where $L_i$ is the length of the PML extending in the $i$ direction.
+
+
 \subsection{Incorporating PML into Maxwell's Equations}
 
 The Maxwell's Equations in the frequency domain are:
@@ -714,7 +726,7 @@ For $\En_x$:
     \En_z\Big|^{i,j,k}_{t+\dt} = \mEz \Dn_z\Big|^{i,j,k}_{t+\dt}
 \end{align}
 
-\subsection{The PML Parameters}
 
+\section{FDTD for a transmission line}
 
 
