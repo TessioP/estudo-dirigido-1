@@ -1,0 +1,42 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage{../mathsutil}
+\usepackage{../fdtdutil}
+\usetheme{Madrid}
+%Information to be included in the title page:
+\title{Estudo Dirigido 1}
+\author{Téssio Perotti Arruda}
+\institute{UnB}
+\date{2022}
+
+\institute[UnB] % (optional)
+{
+  \inst{1}%
+  Electrical Engineer\\
+  University of Brasilia
+}
+
+\date[ED 2022.1] % (optional)
+{Estudo Dirigido 1, September 2022}
+
+\logo{\includegraphics[height=0.75cm]{unb}}
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Maxwell's Equations in Cartesian Coordinates}
+The Maxwell's Equations are:
+\begin{align*}
+    \rot \Et(t) &= -\partial _t \Bt(t), \\
+    \rot \Hht(t) &= \partial_t \Dt(t), \\
+    \Div \Bt(t) &= 0, \\
+    \Div \Dt(t) &= 0,
+\end{align*}
+where $\partial_t\cdot = \partialDerivative{\cdot}{t}$.
+\end{frame}
+
+
+\end{document}

@@ -729,4 +729,87 @@ For $\En_x$:
 
 \section{FDTD for a transmission line}
 
+The following schematic will be considered for simulation purposes:
 
+
+Consider the parameters:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Parameter} & \textbf{Description}               & \textbf{Value} \\ \hline
+    $a$                & Half-length on y-axis              & 5 cm           \\ \hline
+    $b$                & Half-length on x-axis              & 5 cm           \\ \hline
+    $c$                & Half-length on z-axis              & 10 cm          \\ \hline
+    $d$                & Half-distance between strips       & 2 cm           \\ \hline
+    $N_x$              & Number of cells on x-axis          & 40             \\ \hline
+    $N_y$              & Number of cells on y-axis          & 40             \\ \hline
+    $N_z$              & Number of cells on z-axis          & 70             \\ \hline
+    $N_{\textnormal{PML}}$          & Number of cells with PML on z-axis & 10             \\ \hline
+    \end{tabular}
+\end{table}
+
+From this table it is possible to derive other parameters:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Parameter}                           & \textbf{Description} & \textbf{Value} \\ \hline
+    $N_x^c$                                      & Index centered on x  & 20             \\ \hline
+    $N_y^c$                                      & Index centered on y  & 20             \\ \hline
+    $N_z^c$                                      & Index centered on z  & 35             \\ \hline
+    $N_{\textnormal{plate}}^{\textnormal{high}}$ & Y-index of top strip & 32             \\ \hline
+    $N_{\textnormal{plate}}^{\textnormal{low}}$  & Y-index of low strip & 8              \\ \hline
+    $\dx$                                        & ${2b}/{N_x}$         & 40             \\ \hline
+    $\dy$                                        & ${2a}/{N_y}$         & 70             \\ \hline
+    $\dz$                                        & ${2c}/{N_z}$         & 10             \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Boundary Conditions}
+
+\subsubsection{On Source} \hfill
+
+The source is located at $\pare{N_x^c, N_{\textnormal{plate}}^{\textnormal{low}} : N_{\textnormal{plate}}^{\textnormal{high}}, N_z^c}$. It will be considered that the source is on $\En_y$ as shown below: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{contents/input_source.png}
+    \caption{Input electric field with frequency $f_c = \SI{3.0}{\giga\hertz}$, peak time $t_p = \SI{1.5}{\nano\second}$ and duration $t_f = \SI{5.0}{\nano\second}$. The Gaussian that limits the sine function has $\tau = \SI{0.5}{\nano\second}$.}
+\end{figure}
+
+\subsubsection{On Conductor Strips}\hfill
+
+There is one strip located at $\pare{:, N_{\textnormal{plate}}^{\textnormal{low}}, :}$ and another at $\pare{:, N_{\textnormal{plate}}^{\textnormal{high}}, :}$. At these positions is valid:
+
+\begin{align}
+    \En_x = \En_z = \Hht_y = 0
+\end{align}
+
+\subsubsection{Conductor Walls}\hfill
+
+The condition for conductor walls is the same as for conductor strips. Their positions are at: $\pare{0, :, :}$, $\pare{N_x-1, :, :}$, $\pare{:, 0, :}$,$\pare{:, N_y-1, :}$, $\pare{:, :, 0}$ and $\pare{:, :, N_z-1}$.
+
+\subsection{Step Time}
+
+The step time was chosen to obey the Courant Stability condition:
+
+\begin{equation}
+    \dt \leq \cfrac{1}{c_0\sqrt{\pare{\cfrac{1}{\dx}}^2 + \pare{\cfrac{1}{\dy}}^2 + \pare{\cfrac{1}{\dz}}^2}}
+\end{equation}
+
+\subsection{Simulation Results}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{contents/central_xy_plane.png}
+    \caption{Central XY Plane.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{contents/central_zy_plane.png}
+    \caption{Central ZY Plane.}
+\end{figure}
