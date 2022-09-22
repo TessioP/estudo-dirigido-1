@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage[english]{babel}
 \usepackage{../mathsutil}
 \usepackage{../fdtdutil}
@@ -530,20 +530,21 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
 
 \begin{frame}{Update equation for $\Hht_x$}
   \begin{align}
-    \resizebox{\hsize}{!}{$
+    \resizebox{0.8\hsize}{!}{$
       \Hht_x\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \mxone\Big|^{i,j,k} \Hht_x\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
       + \mxtwo\Big|^{i,j,k}\CEx\Big|^{i,j,k}_{t} + \mxthree \ICEx\Big|^{i,j,k}_{t} 
       + \mxfour \IHx\Big|^{i,j,k}_{t}
     $}
   \end{align}
+
   \begin{columns}
     \resizebox{0.6\textwidth}{!}{$
     \begin{column}{0.6\textwidth}
       \begin{align*}
           \mxzero\Big|^{i,j,k} &= \cfrac{1}{\dt} + \cfrac{\sigma_y\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0}  + \cfrac{\sigma_y\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2}\\
           \mxone\Big|^{i,j,k} &= \cfrac{1}{\mxzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} - \cfrac{\sigma_y\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_y\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right] \\
-          \mxtwo\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}} \\
-          \mxthree\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_x\Prime\Big|^{i,j,k}}{\mu_{xx}\Big|^{i,j,k}}
+          \mxtwo\Big|^{i,j,k} &= -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{xx}\Big|^{i,j,k}} \quad
+          \mxthree\Big|^{i,j,k} = -\cfrac{1}{\mxzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_x\Prime\Big|^{i,j,k}}{\mu_{xx}\Big|^{i,j,k}}
       \end{align*}
     \end{column}
     $}
@@ -565,7 +566,7 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
 
 \begin{frame}{Update equation for $\Hht_y$}
   \begin{align}
-    \resizebox{\hsize}{!}{$
+    \resizebox{0.8\hsize}{!}{$
     \Hht_y\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \myone\Big|^{i,j,k} \Hht_y\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
      + \mytwo\Big|^{i,j,k}\CEy\Big|^{i,j,k}_{t} + \mythree \ICEy\Big|^{i,j,k}_{t} 
     + \myfour \IHy\Big|^{i,j,k}_{t}
@@ -577,8 +578,8 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
       \begin{align*}
         \myzero\Big|^{i,j,k} &= \cfrac{1}{\dt} + \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} + \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \\
         \myone\Big|^{i,j,k} &= \cfrac{1}{\myzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} - \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_z\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_z\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right] \\
-        \mytwo\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{yy}\Big|^{i,j,k}} \\
-        \mythree\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_y\Prime\Big|^{i,j,k}}{\mu_{yy}\Big|^{i,j,k}}
+        \mytwo\Big|^{i,j,k} &= -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{yy}\Big|^{i,j,k}} \qquad
+        \mythree\Big|^{i,j,k} = -\cfrac{1}{\myzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_y\Prime\Big|^{i,j,k}}{\mu_{yy}\Big|^{i,j,k}}
       \end{align*}
     \end{column}
     $}
@@ -600,7 +601,7 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
 
 \begin{frame}{Update equation for $\Hht_z$}
   \begin{align}
-    \resizebox{\hsize}{!}{$
+    \resizebox{0.8\hsize}{!}{$
     \Hht_z\Big|_{t+\nicefrac{\dt}{2}}^{i,j,k} = \mzone\Big|^{i,j,k} \Hht_z\Big|_{t-\nicefrac{\dt}{2}}^{i,j,k} 
      + \mztwo\Big|^{i,j,k}\CEz\Big|^{i,j,k}_{t} + \mzthree \ICEz\Big|^{i,j,k}_{t} 
     + \mzfour \IHz\Big|^{i,j,k}_{t}
@@ -612,8 +613,8 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
       \begin{align*}
         \mzzero\Big|^{i,j,k} &= \cfrac{1}{\dt} + \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_y\Prime\Big|^{i,j,k}}{2\epsilon_0} + \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \\
         \mzone\Big|^{i,j,k} &= \cfrac{1}{\mzzero\Big|^{i,j,k}}\left[\cfrac{1}{\dt} - \cfrac{\sigma_x\Prime\Big|^{i,j,k} + \sigma_y\Prime\Big|^{i,j,k}}{2\epsilon_0} - \cfrac{\sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k} \dt}{4\epsilon_0^2} \right] \\
-        \mztwo\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{zz}\Big|^{i,j,k}} \\
-        \mzthree\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_z\Prime\Big|^{i,j,k}}{\mu_{zz}\Big|^{i,j,k}}
+        \mztwo\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0}{\mu_{zz}\Big|^{i,j,k}} \quad
+        \mzthree\Big|^{i,j,k} = -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{c_0\dt}{\epsilon_0 }\cfrac{ \sigma_z\Prime\Big|^{i,j,k}}{\mu_{zz}\Big|^{i,j,k}}
       \end{align*}
     \end{column}
     $}
@@ -623,9 +624,9 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
       \begin{align*}
         \mzfour\Big|^{i,j,k} &= -\cfrac{1}{\mzzero\Big|^{i,j,k}} \cfrac{\dt}{\epsilon_0^2} \sigma_x\Prime\Big|^{i,j,k}  \sigma_y\Prime\Big|^{i,j,k}
         \\
-        \ICEz\Big|^{i,j,k}_t &= \sum\limits_{T=0}^t\CEz\Big|^{i,j,k}_t
-        \\
         \IHz\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}} &= \sum\limits_{T=\nicefrac{\dt}{2}}^{t-\nicefrac{\dt}{2}} \Hht_z\Big|^{i,j,k}_T
+        \\
+        \ICEz\Big|^{i,j,k}_t &= \sum\limits_{T=0}^t\CEz\Big|^{i,j,k}_t
       \end{align*}
     \end{column}
     $}
@@ -703,7 +704,7 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
         \input{../contents/tiks/transmission_line.tex}
       }
 
-      \resizebox{0.8\textwidth}{!}
+      \resizebox{0.7\textwidth}{!}
       { 
         \input{../contents/tiks/transmission_line_xy.tex}
         \input{../contents/tiks/transmission_line_zy.tex}
@@ -712,15 +713,16 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
 
 \begin{frame}{Simulation Scenary}
     \begin{center}
-      \resizebox{0.8\textwidth}{!}
+      \resizebox{0.65\textwidth}{!}
       { 
         \input{../contents/tiks/transmission_line_xy.tex}
         \input{../contents/tiks/transmission_line_zy.tex}
       }
     \end{center}
+    \vspace{-1cm}
       \begin{columns}
         
-        \begin{column}{0.45\textwidth}
+        \begin{column}{0.4\textwidth}
           \begin{table}[H]
           \resizebox{\textwidth}{!}
           {
@@ -742,7 +744,7 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
           
         \end{column}
 
-        \begin{column}{0.35\textwidth}
+        \begin{column}{0.4\textwidth}
           \begin{table}[H]
           \resizebox{\textwidth}{!}
           {
@@ -754,9 +756,9 @@ For the term 2, it is necessary to approximate $\Hht_x(t)$, that will be done by
             $N_z^c$                                      & Index centered on z  & 35             \\ \hline
             $N_{\textnormal{plate}}^{\textnormal{high}}$ & Y-index of top strip & 32             \\ \hline
             $N_{\textnormal{plate}}^{\textnormal{low}}$  & Y-index of low strip & 8              \\ \hline
-            $\dx$                                        & ${2b}/{N_x}$         & 40             \\ \hline
-            $\dy$                                        & ${2a}/{N_y}$         & 70             \\ \hline
-            $\dz$                                        & ${2c}/{N_z}$         & 10             \\ \hline
+            $\dx$                                        & ${2b}/{N_x}$         & 0.25 cm             \\ \hline
+            $\dy$                                        & ${2a}/{N_y}$         & 0.25 cm             \\ \hline
+            $\dz$                                        & ${2c}/{N_z}$         & 0.286 cm             \\ \hline
             \end{tabular}
           }
           \end{table}
