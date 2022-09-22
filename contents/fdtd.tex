@@ -197,7 +197,7 @@ Similarly, it is possible to write the curl equations for the other components o
 
 \begin{align}
     \resizebox{.8\hsize}{!}{$
-        \CHx = \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dy} - \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dz}
+        \CHx = \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i,j-1,k}_{t+\nicefrac{\dt}{2}}}{\dy} - \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i,j,k-1}_{t+\nicefrac{\dt}{2}}}{\dz}
         \label{eq:CHx}
     $}
 \end{align}
@@ -205,7 +205,7 @@ Similarly, it is possible to write the curl equations for the other components o
 
 \begin{align}
     \resizebox{.8\hsize}{!}{$
-        \CHy = \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dz} - \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dx}
+        \CHy = \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j,k-1}_{t+\nicefrac{\dt}{2}}}{\dz} - \cfrac{\Hht_z\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_z\Big|^{i-1,j,k}_{t+\nicefrac{\dt}{2}}}{\dx}
         \label{eq:CHy}
     $}
 \end{align}
@@ -213,7 +213,7 @@ Similarly, it is possible to write the curl equations for the other components o
 
 \begin{align}
     \resizebox{.8\hsize}{!}{$
-        \CHz = \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dx} - \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j,k}_{t-\nicefrac{\dt}{2}}}{\dy}
+        \CHz = \cfrac{\Hht_y\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_y\Big|^{i-1,j,k}_{t+\nicefrac{\dt}{2}}}{\dx} - \cfrac{\Hht_x\Big|^{i,j,k}_{t+\nicefrac{\dt}{2}}-\Hht_x\Big|^{i,j-1,k}_{t+\nicefrac{\dt}{2}}}{\dy}
         \label{eq:CHz}
     $}
 \end{align}
@@ -262,7 +262,7 @@ and for $\En_z$:
     \begin{align}
         \cfrac{\Hht_y\Big|^{i,j,k}_{t+\dttwo}-\Hht_y\Big|^{i-1,j,k}_{t+\dttwo}}{\dx} - \cfrac{\Hht_x\Big|^{i,j,k}_{t+\dttwo}-\Hht_x\Big|^{i,j-1,k}_{t+\dttwo}}{\dy} \nonumber\\
         =
-        \cfrac{\epsilon_{zz}^{i,j,k}}{c_0}\cfrac{\En_z\Big|^{i,j,k}_{t+\dt}-\En_z\Big|^{i,j,k}_{t}}{\dt}.
+        \cfrac{\epsilon_{zz}\Big|^{i,j,k}}{c_0}\cfrac{\En_z\Big|^{i,j,k}_{t+\dt}-\En_z\Big|^{i,j,k}_{t}}{\dt}.
         \label{eq:fd_ez}
     \end{align}
 \end{small}
@@ -300,7 +300,9 @@ for a wave travelling at $y$ direction, and
 \end{equation}
 for a wave travelling at $z$ direction.
 
-And, for absorb all waves in all boundaries,
+The loss is incorporated into the permittivity through the electrical conductivity $\sigma$ as $\tilde{\epsilon} = \epsilon_r + \cfrac{\sigma}{j\omega \epsilon_0}$. 
+
+And, for absorbing all waves in all boundaries, that is achieved by matching the impedance and incorporating loss in all directions:
 
 \begin{equation}
     \brackets{\epsilon_{r,\textnormal{UPML}}} = \brackets{\mu_{r,\textnormal{UPML}}} = \brackets{S} = \brackets{\epsilon_{r,x}}\brackets{\epsilon_{r,y}}\brackets{\epsilon_{r,z}} \nonumber
@@ -313,16 +315,22 @@ And, for absorb all waves in all boundaries,
     \end{bmatrix}.
 \end{equation}
 
-The loss is incorporated into the permittivity through the electrical conductivity $\sigma$ as $\tilde{\epsilon} = \epsilon_r + \cfrac{\sigma}{j\omega \epsilon_0}$.
+
 
 \subsection{The PML Parameters}
 
-From \cite{rumpf_book}:
+Considering $\epsilon_r = 1$, the parameters $s_i$ are \cite{rumpf_book}:
+
+\begin{align}
+    s_i = 1 + \cfrac{\sigma_i\Prime}{j\omega\epsilon_0}, i \in (x, y, z)
+\end{align}
+
+And the fake conductivities are:
 
 \begin{align}
     \sigma_x\Prime(x) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{x}{L_x}}^3 \\
     \sigma_y\Prime(y) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{y}{L_y}}^3 \\
-    \sigma_z\Prime(z) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{z}{L_z}}^3,
+    \sigma_z\Prime(z) &= \cfrac{\epsilon_0}{2\dt}\pare{\cfrac{z}{L_z}}^3
 \end{align}
 where $L_i$ is the length of the PML extending in the $i$ direction.
 
@@ -367,7 +375,7 @@ Keeping $\brackets{S}$ separate from $\brackets{\mu_r}$ and $\brackets{\epsilon_
 
 The $\omega$ will be ommitted from the equations.
 
-Considering only the diagonal terms in $\brackets{\mu_r}$, $\brackets{\epsilon_r}$ and $\brackets{\sigma}$, the final form of the Maxwell's Equations with UPML are \cite{empossible_3d_pml}:
+Considering only the diagonal terms in $\brackets{\mu_r}$, $\brackets{\epsilon_r}$ and $\brackets{\sigma}$ = 0, the final form of the Maxwell's Equations with UPML are \cite{empossible_3d_pml}:
 
 \begin{small}
 
@@ -416,7 +424,7 @@ Considering only the diagonal terms in $\brackets{\mu_r}$, $\brackets{\epsilon_r
 \end{small}
 
 \subsection{Conversion to the Time-Domain}
-First, assume no conductivity: $\brackets{\sigma} = 0$.
+% First, assume no conductivity: $\brackets{\sigma} = 0$.
 
 Starting from \eqref{eq:Hx_upml_freq}:
 
@@ -731,6 +739,15 @@ For $\En_x$:
 
 The following schematic will be considered for simulation purposes:
 
+\input{contents/tiks/transmission_line.tex}
+
+Slicing a plane $xy$ on half-length of $z$-axis:
+
+\input{contents/tiks/transmission_line_xy.tex}
+
+Slicing a plane $zy$ on half-length of $x$-axis:
+
+\input{contents/tiks/transmission_line_zy.tex}
 
 Consider the parameters:
 
@@ -739,14 +756,15 @@ Consider the parameters:
     \begin{tabular}{|c|c|c|}
     \hline
     \textbf{Parameter} & \textbf{Description}               & \textbf{Value} \\ \hline
-    $a$                & Half-length on y-axis              & 5 cm           \\ \hline
-    $b$                & Half-length on x-axis              & 5 cm           \\ \hline
-    $c$                & Half-length on z-axis              & 10 cm          \\ \hline
+    $a$                & Half-length on $y$-axis              & 5 cm           \\ \hline
+    $b$                & Half-length on $x$-axis              & 5 cm           \\ \hline
+    $c$                & Half-length on $z$-axis              & 10 cm          \\ \hline
     $d$                & Half-distance between strips       & 2 cm           \\ \hline
-    $N_x$              & Number of cells on x-axis          & 40             \\ \hline
-    $N_y$              & Number of cells on y-axis          & 40             \\ \hline
-    $N_z$              & Number of cells on z-axis          & 70             \\ \hline
+    $N_x$              & Number of cells on $x$-axis          & 40             \\ \hline
+    $N_y$              & Number of cells on $y$-axis          & 40             \\ \hline
+    $N_z$              & Number of cells on $z$-axis          & 70             \\ \hline
     $N_{\textnormal{PML}}$          & Number of cells with PML on z-axis & 10             \\ \hline
+    $\epsilon_{r_2}$          & Relative permittivity between strips & 5             \\ \hline
     \end{tabular}
 \end{table}
 
